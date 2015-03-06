@@ -1,0 +1,64 @@
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.deeksha.penny.AddTransactionFragment"
+    android:clickable="true">
+
+
+    <EditText
+        android:layout_width="254dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:id="@+id/transaction_name"
+        android:layout_gravity="center_horizontal|top"
+        android:hint="TransactionName"
+        android:inputType="textCapSentences"
+        android:background="@drawable/back"
+        android:layout_marginTop="100dip"
+        android:paddingTop="20dip" />
+
+    <EditText
+        android:layout_width="248dp"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/amount"
+        android:layout_gravity="center_horizontal|top"
+        android:layout_marginTop="250dip"
+        android:background="@drawable/back"
+        android:hint="Amount"
+        android:paddingTop="20dip" />
+
+    <TextView
+        android:layout_width="253dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/category"
+        android:layout_gravity="center"
+        android:background="@drawable/back"
+        android:onClick="onClick"
+        android:clickable="true"
+        android:hint="Category"
+        android:paddingTop="20dip" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="AddTransaction"
+        android:id="@+id/add_transaction_button"
+        android:layout_gravity="center"
+        android:layout_marginTop="250dip" />
+
+    <TextView
+        android:layout_width="255dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/date"
+        android:layout_gravity="center_horizontal|top"
+        android:layout_marginTop="400dip"
+        android:background="@drawable/back"
+        android:paddingTop="20dip"
+        android:hint="Date" />
+
+</FrameLayout>

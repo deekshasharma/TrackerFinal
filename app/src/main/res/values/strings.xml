@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">PennyApp</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- Nav Drawer Menu Items -->
+    <string-array name="nav_drawer_items">
+        <item>Transactions</item>
+        <item>Summary</item>
+        <item>Budget</item>
+    </string-array>
+
+    <!-- Nav Drawer List Item Icons -->
+    <!-- Keep them in order as the titles are in -->
+    <array name="nav_drawer_icons">
+        <item>@drawable/transaction</item>
+        <item>@drawable/summary</item>
+        <item>@drawable/budgets</item>
+    </array>
+
+    <!-- <Group Titles> -->
+    <string-array name="group_titles">
+        <item>Food &amp; Drink</item> 0
+        <item>Business</item>
+        <item>Children</item>
+        <item>Culture</item>
+        <item>Education</item>
+        <item>Financial</item>
+        <item>Sports &amp; Fitness</item>
+        <item>Gifts &amp; Donations</item>
+        <item>Health &amp; Medical</item>
+        <item>Home</item>
+        <item>Income</item>
+        <item>Investment</item>
+        <item>Legal</item>
+        <item>Office</item>
+        <item>Personal</item>
+        <item>Pets</item>
+        <item>Technology</item>
+        <item>Transportation</item>
+        <item>Travel</item>
+        <item>Uncategorized</item>
+        <item>Utilities</item>
+    </string-array>
+
+    <!-- <Group Icons> -->
+    <!-- <Group Icons are kept in the same order as Group titles> -->
+    <array name="group_icons">
+        <item>@drawable/food</item>
+        <item>@drawable/business</item>
+        <item>@drawable/children</item>
+        <item>@drawable/culture</item>
+        <item>@drawable/education</item>
+        <item>@drawable/financial</item>
+        <item>@drawable/sports</item>
+        <item>@drawable/gifts</item>
+        <item>@drawable/health</item>
+        <item>@drawable/home</item>
+        <item>@drawable/income</item>
+        <item>@drawable/investment</item>
+        <item>@drawable/legal</item>
+        <item>@drawable/office</item>
+        <item>@drawable/personal</item>
+        <item>@drawable/pets</item>
+        <item>@drawable/technology</item>
+        <item>@drawable/transportation</item>
+        <item>@drawable/travel</item>
+        <item>@drawable/uncategorized</item>
+        <item>@drawable/utilities</item>
+    </array>
+
+    <!-- Content Description -->
+    <string name="desc_list_item_icon">Item Icon</string>
+
+    <!-- <Add TransactionItem Fragment Title> -->
+    <!--<string name="add_transaction_title">Add New Transaction</string>-->
+    <string name="add_title">Add New Transaction</string>
+
+    <!-- <Group Fragment title> -->
+    <string name="group_fragment_title">Choose Group</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_add">AddActivity</string>
+    <string name="title_activity_group">Select Group</string>
+    <string name="title_activity_category">Select Category</string>
+    <string name="title_activity_budget">Budgets</string>
+    <string name="title_activity_summary">Summary</string>
+    <string name="title_activity_view_transaction">Transactions</string>
+
+</resources>
