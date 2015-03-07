@@ -6,6 +6,9 @@ import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.example.deekshasharma.pennyapp.Collections.AllSummaryItemsEndPoint;
+import com.example.deekshasharma.pennyapp.adapter.SummaryListAdapter;
+
 
 public class SummaryActivity extends MainActivity {
 
@@ -16,7 +19,11 @@ public class SummaryActivity extends MainActivity {
         getLayoutInflater().inflate(R.layout.activity_summary,frameLayout);
 
         ListView summaryListView = (ListView) findViewById(R.id.summary_list_view);
-//        ArrayAdapter
+
+        ArrayAdapter summaryListAdapter = new SummaryListAdapter(this,R.layout.summary_list_item, AllSummaryItemsEndPoint.summaryItemList);
+        summaryListView.setAdapter(summaryListAdapter);
+        AllSummaryItemsEndPoint endPoint = new AllSummaryItemsEndPoint(this,summaryListAdapter);
+
 
     }
 

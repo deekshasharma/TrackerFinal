@@ -52,9 +52,11 @@ public class Categories {
         RequestQueue queue = Volley.newRequestQueue(context);
         final String url = " https://api-pennyapp.rhcloud.com/rest/categories/groups/" + groupName.replace(" ", "%20");
         JsonArrayRequest arrayRequest = new JsonArrayRequest(url,
-                new Response.Listener<JSONArray>() {
+                new Response.Listener<JSONArray>()
+                {
                     @Override
-                    public void onResponse(JSONArray response) {
+                    public void onResponse(JSONArray response)
+                    {
                         createCategoryCollectionFromJsonResponse(response);
                         System.out.println("GET /Categories:" + response.toString());
                     }
@@ -66,7 +68,8 @@ public class Categories {
         }) {
 
             @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
+            public Map<String, String> getHeaders() throws AuthFailureError
+            {
                 HashMap<String, String> headers = new HashMap<>();
                 headers.put("BEARER", "55b885274e7912280095ef80ac1cb937:d8922b44-75af-4810-a87e-77adcf433cfd:760000000");
                 return headers;

@@ -26,7 +26,7 @@ public class TransactionsEndPoint {
     private ListFragment viewTransactionFragment;
     private List<TransactionItem> transactionList;
     private Context context;
-    private static final String URL = "https://api-pennyapp.rhcloud.com/rest/transactions/d8922b44-75af-4810-a87e-77adcf433cfd/2015/02";
+    private static final String URL = "https://api-pennyapp.rhcloud.com/rest/transactions/d8922b44-75af-4810-a87e-77adcf433cfd/2015/03";
 
 
     public TransactionsEndPoint(Context context, ListFragment viewTransactionFragment)
