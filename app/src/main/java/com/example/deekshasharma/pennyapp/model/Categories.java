@@ -1,11 +1,8 @@
 package com.example.deekshasharma.pennyapp.model;
 
-import android.app.ListFragment;
 import android.content.Context;
 import android.util.Log;
 import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
-
 import com.android.volley.AuthFailureError;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;

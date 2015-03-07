@@ -3,6 +3,8 @@ package com.example.deekshasharma.pennyapp;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 
 public class SummaryActivity extends MainActivity {
@@ -10,9 +12,12 @@ public class SummaryActivity extends MainActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_summary);
         getLayoutInflater().inflate(R.layout.activity_main,frameLayout);
         getLayoutInflater().inflate(R.layout.activity_summary,frameLayout);
+
+        ListView summaryListView = (ListView) findViewById(R.id.summary_list_view);
+//        ArrayAdapter
+
     }
 
 
@@ -25,9 +30,6 @@ public class SummaryActivity extends MainActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement

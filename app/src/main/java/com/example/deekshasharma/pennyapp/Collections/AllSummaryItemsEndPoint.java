@@ -1,6 +1,12 @@
 package com.example.deekshasharma.pennyapp.Collections;
 
-public class AllSummaryItemsEndPoint {
+import com.example.deekshasharma.pennyapp.model.SummaryItem;
+
+import java.util.List;
+
+public class AllSummaryItemsEndPoint
+{
+    private List<SummaryItem> summaryItemList;
 
 
 }
