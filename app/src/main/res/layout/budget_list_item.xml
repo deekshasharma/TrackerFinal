@@ -7,7 +7,7 @@
 
 
     <ImageView
-        android:id="@+id/budget_category_icon"
+        android:id="@+id/budget_group_icon"
         android:layout_width="60dp"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -20,7 +20,7 @@
         android:id="@+id/budget_group_name"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_toRightOf="@id/group_icon"
+        android:layout_toRightOf="@id/budget_group_icon"
         android:minHeight="?android:attr/listPreferredItemHeightSmall"
         android:textAppearance="?android:attr/textAppearanceListItemSmall"
         android:textColor="@color/list_item_title"

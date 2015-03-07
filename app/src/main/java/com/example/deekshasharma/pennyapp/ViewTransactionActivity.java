@@ -1,20 +1,19 @@
 package com.example.deekshasharma.pennyapp;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
 
-//public class BudgetActivity extends ActionBarActivity {
-public class BudgetActivity extends MainActivity {
+public class ViewTransactionActivity extends MainActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+//        setContentView(R.layout.activity_view_transaction);
 
         getLayoutInflater().inflate(R.layout.activity_main,frameLayout);
-        getLayoutInflater().inflate(R.layout.activity_view_budget,frameLayout);
+        getLayoutInflater().inflate(R.layout.activity_view_transaction,frameLayout);
 
     }
 
@@ -22,7 +21,7 @@ public class BudgetActivity extends MainActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_budget, menu);
+        getMenuInflater().inflate(R.menu.menu_view_transaction, menu);
         return true;
     }
 

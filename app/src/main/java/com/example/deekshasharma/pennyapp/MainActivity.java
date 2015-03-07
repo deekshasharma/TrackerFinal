@@ -1,6 +1,5 @@
 package com.example.deekshasharma.pennyapp;
 import android.app.Fragment;
-import android.app.FragmentManager;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
@@ -8,11 +7,11 @@ import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.FrameLayout;
 import android.widget.ListView;
 import com.example.deekshasharma.pennyapp.adapter.NavDrawerListAdapter;
 import com.example.deekshasharma.pennyapp.model.IconWithTitleItem;
@@ -40,12 +39,17 @@ public class MainActivity extends ActionBarActivity {
     private ArrayList<IconWithTitleItem> navDrawerItems;
     private NavDrawerListAdapter adapter;
 
+    protected FrameLayout frameLayout;
+    protected static int position;
+    private static boolean isLaunch = true;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        frameLayout = (FrameLayout) findViewById(R.id.frame_container);
 
         mTitle = mDrawerTitle = getTitle();
 
@@ -72,12 +76,18 @@ public class MainActivity extends ActionBarActivity {
         // Recycle the typed array
         navMenuIcons.recycle();
 
-        mDrawerList.setOnItemClickListener(new SlideMenuClickListener());
+//        mDrawerList.setOnItemClickListener(new SlideMenuClickListener());
 
         // setting the nav drawer list adapter
-        adapter = new NavDrawerListAdapter(getApplicationContext(),
-                navDrawerItems);
+        adapter = new NavDrawerListAdapter(getApplicationContext(),navDrawerItems);
         mDrawerList.setAdapter(adapter);
+
+        mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                displayView(position);
+            }
+        });
 
         // enabling action bar app icon and behaving it as toggle button
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -89,42 +99,38 @@ public class MainActivity extends ActionBarActivity {
                 R.string.app_name // nav drawer close - description for accessibility
         ) {
             public void onDrawerClosed(View view) {
-                getSupportActionBar().setTitle(mTitle);
+                getSupportActionBar().setTitle(navMenuTitles[position]);
                 // calling onPrepareOptionsMenu() to show action bar icons
                 invalidateOptionsMenu();
+                super.onDrawerClosed(view);
             }
 
             public void onDrawerOpened(View drawerView) {
                 getSupportActionBar().setTitle(mDrawerTitle);
                 // calling onPrepareOptionsMenu() to hide action bar icons
                 invalidateOptionsMenu();
+                super.onDrawerOpened(drawerView);
+            }
+
+            @Override
+            public void onDrawerSlide(View drawerView, float slideOffset) {
+                super.onDrawerSlide(drawerView, slideOffset);
+            }
+
+            @Override
+            public void onDrawerStateChanged(int newState) {
+                super.onDrawerStateChanged(newState);
             }
         };
 
         mDrawerLayout.setDrawerListener(mDrawerToggle);
 
-        if (savedInstanceState == null) {
-            // on first time display view for first nav item
+        if (isLaunch)
+        {
+            isLaunch = false;
             displayView(0);
         }
-
     }
-
-
-    /**
-     * Slide menu item click listener
-     * */
-    private class SlideMenuClickListener implements
-            ListView.OnItemClickListener {
-        @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position,
-                                long id) {
-            // display view for selected nav drawer item
-            displayView(position);
-        }
-    }
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -146,12 +152,8 @@ public class MainActivity extends ActionBarActivity {
             case R.id.action_settings:
                 return true;
             case R.id.addButton:
-
-                // Activity Code added
                 Intent intent = new Intent(this,AddActivity.class);
                 startActivity(intent);
-                setTitle(R.string.add_title); // Not Working
-
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -168,41 +170,31 @@ public class MainActivity extends ActionBarActivity {
         return super.onPrepareOptionsMenu(menu);
     }
 
-    /**
-     * Display fragment view for selected nav drawer list item
-     * */
+    // New method to test Budget Activity
     private void displayView(int position) {
         // update the main content by replacing fragments
         Fragment fragment = null;
+
+        mDrawerLayout.closeDrawer(mDrawerList);
+        MainActivity.position = position;
+
         switch (position) {
             case 0:
-                fragment = new ViewTransactionFragment();
+                Intent intent1 = new Intent(this,ViewTransactionActivity.class);
+                startActivity(intent1);
                 break;
             case 1:
-                fragment = new SummaryFragment();
+                Intent intent2 = new Intent(this,BudgetActivity.class);
+                startActivity(intent2);
                 break;
             case 2:
-                fragment = new BudgetFragment();
-                setTitle("Budgets");
+                Intent intent = new Intent(this,BudgetActivity.class);
+                startActivity(intent);
                 break;
             default:
                 break;
         }
 
-        if (fragment != null) {
-            FragmentManager fragmentManager = getFragmentManager();
-            fragmentManager.beginTransaction()
-                    .replace(R.id.frame_container, fragment).commit();
-
-            // update selected item and title, then close the drawer
-            mDrawerList.setItemChecked(position, true);
-            mDrawerList.setSelection(position);
-            setTitle(navMenuTitles[position]);
-            mDrawerLayout.closeDrawer(mDrawerList);
-        } else {
-            // error in creating fragment
-            Log.e("MainActivity", "Error in creating fragment");
-        }
     }
 
     @Override

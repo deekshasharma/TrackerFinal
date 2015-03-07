@@ -42,7 +42,10 @@
             android:name=".BudgetActivity"
             android:label="@string/title_activity_budget" >
         </activity>
-
+        <activity
+            android:name=".ViewTransactionActivity"
+            android:label="@string/title_activity_view_transaction" >
+        </activity>
     </application>
 
 </manifest>
