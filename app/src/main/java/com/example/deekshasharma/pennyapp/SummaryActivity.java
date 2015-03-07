@@ -5,12 +5,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.deekshasharma.pennyapp.Collections.AllSummaryItemsEndPoint;
 import com.example.deekshasharma.pennyapp.adapter.SummaryListAdapter;
+import com.example.deekshasharma.pennyapp.model.AsyncResponse;
 
 
-public class SummaryActivity extends MainActivity {
+public class SummaryActivity extends MainActivity implements AsyncResponse{
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,9 +27,20 @@ public class SummaryActivity extends MainActivity {
         summaryListView.setAdapter(summaryListAdapter);
         AllSummaryItemsEndPoint endPoint = new AllSummaryItemsEndPoint(this,summaryListAdapter);
 
-
+        endPoint.delegate = this;
+        TextView year = (TextView) findViewById(R.id.get_year_summary);
+        year.setText(endPoint.getYear());
+        TextView month = (TextView) findViewById(R.id.get_months_summary);
+        month.setText(endPoint.getMonth());
+        TextView totalSpent = (TextView) findViewById(R.id.get_total_spent_summary);
+        totalSpent.setText(endPoint.getTotalSpent());
     }
 
+    @Override
+    public void processFinish(String output)
+    {
+
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -46,4 +60,6 @@ public class SummaryActivity extends MainActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
 }

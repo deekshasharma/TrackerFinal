@@ -48,7 +48,7 @@
     <!-- <Group Icons> -->
     <!-- <Group Icons are kept in the same order as Group titles> -->
     <array name="group_icons">
-        <item>@drawable/food</item>
+        <item>@drawable/food_drink</item>
         <item>@drawable/business</item>
         <item>@drawable/children</item>
         <item>@drawable/culture</item>

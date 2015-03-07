@@ -8,12 +8,9 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.example.deekshasharma.pennyapp.R;
+import com.example.deekshasharma.pennyapp.model.GroupToImage;
 import com.example.deekshasharma.pennyapp.model.SummaryItem;
-
-import org.w3c.dom.Text;
-
 import java.util.List;
 
 public class SummaryListAdapter extends ArrayAdapter<SummaryItem>{
@@ -39,12 +36,9 @@ public class SummaryListAdapter extends ArrayAdapter<SummaryItem>{
         TextView spentOnGroup = (TextView) convertView.findViewById(R.id.get_spent_summary);
         spentOnGroup.setText(summaryItemList.get(position).getSpent());
 
-        String drawableName = summaryItemList.get(position).getGroupName();
-        int imageId = convertView.getResources().getIdentifier(drawableName,"drawable","com.example.deekshasharma.pennyapp");
         ImageView groupImage = (ImageView) convertView.findViewById(R.id.get_groupImage_summary);
+        int imageId = GroupToImage.getImage(summaryItemList.get(position).getGroupName());
         groupImage.setImageResource(imageId);
-
-
         return convertView;
     }
 

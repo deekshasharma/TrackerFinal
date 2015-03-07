@@ -85,7 +85,7 @@
 
         <TextView
             android:text="2015"
-            android:id="@+id/getYear_summary"
+            android:id="@+id/get_year_summary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@+id/year"
@@ -129,7 +129,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="$2300"
-            android:id="@+id/get_total_spent"
+            android:id="@+id/get_total_spent_summary"
             android:textColor="#fff8ffd3"
             android:textSize="40dip"
             android:layout_marginLeft="40dp" />
