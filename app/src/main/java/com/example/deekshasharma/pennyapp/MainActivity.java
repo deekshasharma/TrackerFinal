@@ -184,7 +184,7 @@ public class MainActivity extends ActionBarActivity {
                 startActivity(intent1);
                 break;
             case 1:
-                Intent intent2 = new Intent(this,BudgetActivity.class);
+                Intent intent2 = new Intent(this,SummaryActivity.class);
                 startActivity(intent2);
                 break;
             case 2:

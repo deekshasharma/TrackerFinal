@@ -1,17 +1,18 @@
 package com.example.deekshasharma.pennyapp;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
 
-public class SummaryActivity extends ActionBarActivity {
+public class SummaryActivity extends MainActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_summary);
+//        setContentView(R.layout.activity_summary);
+        getLayoutInflater().inflate(R.layout.activity_main,frameLayout);
+        getLayoutInflater().inflate(R.layout.activity_summary,frameLayout);
     }
 
 
