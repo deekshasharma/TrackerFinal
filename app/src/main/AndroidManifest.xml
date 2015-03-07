@@ -46,6 +46,10 @@
             android:name=".ViewTransactionActivity"
             android:label="@string/title_activity_view_transaction" >
         </activity>
+        <activity
+            android:name=".SummaryActivity"
+            android:label="@string/title_activity_summary" >
+        </activity>
     </application>
 
 </manifest>

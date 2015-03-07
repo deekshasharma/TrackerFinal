@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -16,15 +18,16 @@
             android:text="MONTH"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textSize="30dp"
-            android:layout_alignTop="@+id/transactions"
-            android:layout_toLeftOf="@+id/transactions"
-            android:layout_toStartOf="@+id/transactions"
+            android:layout_alignTop="@+id/days_left"
+            android:layout_toLeftOf="@+id/days_left"
+            android:layout_toStartOf="@+id/days_left"
             android:layout_marginRight="107dp"
             android:layout_marginEnd="107dp"
-            android:textColor="#fff8ffd3" />
+            android:textColor="#fff8ffd3"
+            android:paddingRight="50dip" />
 
         <TextView
-            android:id="@+id/transactions"
+            android:id="@+id/days_left"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
@@ -55,25 +58,26 @@
 
         <TextView
             android:text="FEB"
-            android:id="@+id/getMonths"
+            android:id="@+id/get_months_summary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:layout_above="@+id/month"
-            android:layout_toLeftOf="@+id/transactions"
-            android:layout_toStartOf="@+id/transactions"
+            android:layout_toLeftOf="@+id/days_left"
+            android:layout_toStartOf="@+id/days_left"
             android:layout_marginRight="129dp"
             android:layout_marginEnd="129dp"
-            android:textColor="#fff8ffd3" />
+            android:textColor="#fff8ffd3"
+            android:paddingRight="50dip" />
 
         <TextView
             android:text="3"
-            android:id="@+id/get_transactions"
+            android:id="@+id/get_days_summary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@+id/month"
-            android:layout_alignLeft="@+id/transactions"
-            android:layout_alignStart="@+id/transactions"
+            android:layout_alignLeft="@+id/days_left"
+            android:layout_alignStart="@+id/days_left"
             android:layout_marginLeft="47dp"
             android:layout_marginStart="47dp"
             android:textAppearance="?android:attr/textAppearanceLarge"
@@ -81,7 +85,7 @@
 
         <TextView
             android:text="2015"
-            android:id="@+id/getYear"
+            android:id="@+id/getYear_summary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@+id/year"
@@ -92,23 +96,41 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="#fff8ffd3" />
 
-
-
     </RelativeLayout>
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/android:list"
+        android:layout_marginTop="190dp" />
 
-    <!--<TextView-->
-        <!--android:id="@+id/txtLabel"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_centerInParent="true"-->
-        <!--android:textSize="16dp"-->
-        <!--android:text="Find People View"/>-->
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/relativeLayout"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:background="@color/background_material_dark">
 
-    <!--<ImageView android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_below="@id/txtLabel"-->
-        <!--android:layout_centerHorizontal="true"-->
-        <!--android:layout_marginTop="10dp"/>-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="TOTAL SPENT"
+            android:id="@+id/total_spent_text"
+            android:textSize="40dip"
+            android:textColor="#fff8ffd3"
+            android:paddingTop="20dp"
+            android:layout_marginLeft="100dip" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="$2300"
+            android:id="@+id/get_total_spent"
+            android:textColor="#fff8ffd3"
+            android:textSize="40dip"
+            android:layout_marginLeft="40dp" />
+    </TableRow>
 
 </RelativeLayout>
