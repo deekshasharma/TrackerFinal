@@ -3,6 +3,7 @@ package com.example.deekshasharma.pennyapp.model;
 import android.app.ListFragment;
 import android.content.Context;
 import android.util.Log;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 
 import com.android.volley.AuthFailureError;
@@ -23,17 +24,27 @@ import java.util.Map;
 
 public class TransactionsEndPoint {
 
-    private ListFragment viewTransactionFragment;
-    private List<TransactionItem> transactionList;
+//    private ListFragment viewTransactionFragment;
+    private ArrayAdapter viewTransactionListAdapter;
+//    private List<TransactionItem> transactionList = new ArrayList<>();
+    public static List<TransactionItem> transactionList = new ArrayList<>();
     private Context context;
     private static final String URL = "https://api-pennyapp.rhcloud.com/rest/transactions/d8922b44-75af-4810-a87e-77adcf433cfd/2015/03";
 
 
-    public TransactionsEndPoint(Context context, ListFragment viewTransactionFragment)
+//    public TransactionsEndPoint(Context context, ListFragment viewTransactionFragment)
+//    {
+//        this.context = context;
+//        this.viewTransactionFragment = viewTransactionFragment;
+//        transactionList = new ArrayList<>();
+//        getTransactionsFromServer();
+//    }
+
+    public TransactionsEndPoint(Context context, ArrayAdapter viewTransactionListAdapter)
     {
         this.context = context;
-        this.viewTransactionFragment = viewTransactionFragment;
-        transactionList = new ArrayList<>();
+//        transactionList = new ArrayList<>();
+        this.viewTransactionListAdapter = viewTransactionListAdapter;
         getTransactionsFromServer();
     }
 
@@ -77,6 +88,7 @@ public class TransactionsEndPoint {
     Add all transaction items to transaction list.
      */
     private void generateTransactionCollectionFromResponse(JSONObject response) {
+        transactionList.clear();
         JSONArray transactionsJson = null;
         try {
             transactionsJson = response.getJSONArray("transactions");
@@ -92,7 +104,8 @@ public class TransactionsEndPoint {
                 transactionList.add(transactionItem);
             }
 
-            ((BaseAdapter) viewTransactionFragment.getListView().getAdapter()).notifyDataSetChanged();
+//            ((BaseAdapter) viewTransactionFragment.getListView().getAdapter()).notifyDataSetChanged();
+            viewTransactionListAdapter.notifyDataSetChanged();
         } catch (JSONException e) {
             e.printStackTrace();
         }

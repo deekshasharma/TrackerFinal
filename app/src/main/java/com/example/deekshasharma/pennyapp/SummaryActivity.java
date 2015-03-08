@@ -7,7 +7,6 @@ import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-
 import com.example.deekshasharma.pennyapp.Collections.AllSummaryItemsEndPoint;
 import com.example.deekshasharma.pennyapp.adapter.SummaryListAdapter;
 
@@ -45,7 +44,6 @@ public class SummaryActivity extends MainActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
 
         switch (item.getItemId())
         {

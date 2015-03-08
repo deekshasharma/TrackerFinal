@@ -4,6 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+import com.example.deekshasharma.pennyapp.adapter.ViewTransactionListAdapter;
+import com.example.deekshasharma.pennyapp.model.TransactionsEndPoint;
 
 
 public class ViewTransactionActivity extends MainActivity {
@@ -16,12 +21,19 @@ public class ViewTransactionActivity extends MainActivity {
         getLayoutInflater().inflate(R.layout.activity_main,frameLayout);
         getLayoutInflater().inflate(R.layout.activity_view_transaction,frameLayout);
 
+
+        ListView transListView = (ListView) findViewById(R.id.trans_list_view);
+        ArrayAdapter transListAdapter = new ViewTransactionListAdapter(this,
+                R.layout.transaction_list_item,
+                TransactionsEndPoint.transactionList);
+        transListView.setAdapter(transListAdapter);
+        TransactionsEndPoint endPoint = new TransactionsEndPoint(this,transListAdapter);
+
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_view_transaction, menu);
         getMenuInflater().inflate(R.menu.menu_add_button,menu);
         return true;
