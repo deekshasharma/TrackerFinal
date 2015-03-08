@@ -48,8 +48,8 @@ public class BudgetActivity extends MainActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_budget, menu);
+        getMenuInflater().inflate(R.menu.menu_add_button,menu);
         return true;
     }
 
@@ -57,11 +57,15 @@ public class BudgetActivity extends MainActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch (item.getItemId())
+        {
+            case R.id.action_settings:
+                return true;
+            case R.id.addButton:
+                Intent intent = new Intent(this,AddActivity.class);
+                startActivity(intent);
+            default:
+                return super.onOptionsItemSelected(item);
         }
-
-        return super.onOptionsItemSelected(item);
     }
 }
