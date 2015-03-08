@@ -18,8 +18,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginLeft="191dp"
-        android:layout_marginStart="191dp"
-        android:spinnerMode="dropdown" />
+        android:layout_marginStart="191dp"/>
+        <!--android:spinnerMode="dropdown" />-->
 
     <TextView
         android:layout_width="wrap_content"

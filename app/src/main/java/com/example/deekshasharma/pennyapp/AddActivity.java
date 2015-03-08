@@ -115,7 +115,6 @@ public class AddActivity extends ActionBarActivity {
     }
 
 
-
     /*
     Listens to the categoryName TextView
     */
