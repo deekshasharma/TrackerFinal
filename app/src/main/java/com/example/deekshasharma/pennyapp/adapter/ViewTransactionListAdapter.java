@@ -6,9 +6,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.deekshasharma.pennyapp.R;
+import com.example.deekshasharma.pennyapp.model.GroupToImage;
 import com.example.deekshasharma.pennyapp.model.TransactionItem;
 
 import java.util.List;
@@ -30,12 +32,18 @@ public class ViewTransactionListAdapter extends ArrayAdapter {
             convertView = mInflater.inflate(R.layout.transaction_list_item, null);
 
             TextView transactionName = (TextView) convertView.findViewById(R.id.transaction_name);
-            TextView amount = (TextView) convertView.findViewById(R.id.amount);
-            TextView date = (TextView) convertView.findViewById(R.id.date);
-
             transactionName.setText(transactionItemList.get(position).getTransactionName());
-            amount.setText(transactionItemList.get(position).getAmount());
+
+            TextView amount = (TextView) convertView.findViewById(R.id.get_trans_amount);
+            amount.setText("$"+transactionItemList.get(position).getAmount());
+
+            TextView date = (TextView) convertView.findViewById(R.id.get_date);
             date.setText(transactionItemList.get(position).getTransactionDate());
+
+            ImageView groupIcon = (ImageView)convertView.findViewById(R.id.get_group_icon);
+            int imageId = GroupToImage.getImage(transactionItemList.get(position).getGroupName());
+            groupIcon.setImageResource(imageId);
+
         }
             return convertView;
         }

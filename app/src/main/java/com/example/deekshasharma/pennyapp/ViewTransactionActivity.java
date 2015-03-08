@@ -16,7 +16,6 @@ public class ViewTransactionActivity extends MainActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_view_transaction);
 
         getLayoutInflater().inflate(R.layout.activity_main,frameLayout);
         getLayoutInflater().inflate(R.layout.activity_view_transaction,frameLayout);
@@ -24,8 +23,8 @@ public class ViewTransactionActivity extends MainActivity {
 
         ListView transListView = (ListView) findViewById(R.id.trans_list_view);
         ArrayAdapter transListAdapter = new ViewTransactionListAdapter(this,
-                R.layout.transaction_list_item,
-                TransactionsEndPoint.transactionList);
+                                        R.layout.transaction_list_item,
+                                        TransactionsEndPoint.transactionList);
         transListView.setAdapter(transListAdapter);
         TransactionsEndPoint endPoint = new TransactionsEndPoint(this,transListAdapter);
 
@@ -41,9 +40,6 @@ public class ViewTransactionActivity extends MainActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-
         switch (item.getItemId())
         {
             case R.id.action_settings:

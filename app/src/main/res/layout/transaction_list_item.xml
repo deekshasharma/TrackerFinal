@@ -3,54 +3,53 @@
     android:layout_width="match_parent"
     android:layout_height="48dp">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="30dip"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Transaction"
+        android:id="@+id/transaction_name"
+        android:textSize="25dip"
+        android:layout_alignTop="@+id/get_trans_amount"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+         />
 
-    <!--<ImageView-->
-        <!--android:id="@+id/date_icon"-->
-        <!--android:layout_width="25dp"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_alignParentLeft="true"-->
-        <!--android:layout_marginLeft="12dp"-->
-        <!--android:layout_marginRight="12dp"-->
-        <!--android:contentDescription="@string/desc_list_item_icon"-->
-        <!--android:layout_centerVertical="true" />-->
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="$234"
+        android:id="@+id/get_trans_amount"
+        android:textSize="25dip"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/get_date"
+        android:layout_toStartOf="@+id/get_date"
+        android:layout_marginRight="78dp"
+        android:layout_marginEnd="78dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Mar-05-2015"
+        android:id="@+id/get_date"
+        android:textSize="25dip"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/get_group_icon"
+        android:layout_toStartOf="@+id/get_group_icon"
+        android:layout_marginRight="56dp"
+        android:layout_marginEnd="56dp" />
 
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/date"
-            android:text="Write Date Here"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp" />
-
-        <TextView
-            android:id="@+id/transaction_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:minHeight="?android:attr/listPreferredItemHeightSmall"
-            android:gravity="center_vertical"
-            android:layout_alignParentBottom="true"
-            android:layout_marginRight="50dp"
-            android:layout_marginLeft="50dp" />
-
-        <TextView android:id="@+id/amount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-    </LinearLayout>
-
-    <!--<ImageView-->
-        <!--android:id="@+id/transaction_icon"-->
-        <!--android:layout_width="25dp"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_alignParentRight="true"-->
-        <!--android:layout_marginLeft="12dp"-->
-        <!--android:layout_marginRight="12dp"-->
-        <!--android:contentDescription="@string/desc_list_item_icon"-->
-        <!--android:layout_centerVertical="true"/>-->
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="50dip"
+        android:id="@+id/get_group_icon"
+        android:src="@drawable/children"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>

@@ -1,11 +1,8 @@
 package com.example.deekshasharma.pennyapp.model;
 
-import android.app.ListFragment;
 import android.content.Context;
 import android.util.Log;
 import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
-
 import com.android.volley.AuthFailureError;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -24,26 +21,15 @@ import java.util.Map;
 
 public class TransactionsEndPoint {
 
-//    private ListFragment viewTransactionFragment;
     private ArrayAdapter viewTransactionListAdapter;
-//    private List<TransactionItem> transactionList = new ArrayList<>();
     public static List<TransactionItem> transactionList = new ArrayList<>();
     private Context context;
     private static final String URL = "https://api-pennyapp.rhcloud.com/rest/transactions/d8922b44-75af-4810-a87e-77adcf433cfd/2015/03";
 
 
-//    public TransactionsEndPoint(Context context, ListFragment viewTransactionFragment)
-//    {
-//        this.context = context;
-//        this.viewTransactionFragment = viewTransactionFragment;
-//        transactionList = new ArrayList<>();
-//        getTransactionsFromServer();
-//    }
-
     public TransactionsEndPoint(Context context, ArrayAdapter viewTransactionListAdapter)
     {
         this.context = context;
-//        transactionList = new ArrayList<>();
         this.viewTransactionListAdapter = viewTransactionListAdapter;
         getTransactionsFromServer();
     }
@@ -95,27 +81,20 @@ public class TransactionsEndPoint {
             Log.d("TransactionsJson:", transactionsJson.toString());
 
             for (int i = 0; i < transactionsJson.length(); i++) {
-                JSONObject transactionJson = transactionsJson.getJSONObject(i);
+                JSONObject transactionsJsonJSONObject = transactionsJson.getJSONObject(i);
                 TransactionItem transactionItem = new TransactionItem
                                                         (
-                                                          transactionJson.getString("name"),
-                                                          transactionJson.getString("amount"),
-                                                          transactionJson.getString("transactionDate"));
+                                                          transactionsJsonJSONObject.getString("transactionDate"),
+                                                          transactionsJsonJSONObject.getString("name"),
+                                                          transactionsJsonJSONObject.getString("amount"),
+                                                          transactionsJsonJSONObject.getJSONObject("category").getString("groupName"));
                 transactionList.add(transactionItem);
             }
 
-//            ((BaseAdapter) viewTransactionFragment.getListView().getAdapter()).notifyDataSetChanged();
             viewTransactionListAdapter.notifyDataSetChanged();
         } catch (JSONException e) {
             e.printStackTrace();
         }
     }
 
-    /*
-    Returns the list of transaction items
-     */
-    public List<TransactionItem> getTransactionList()
-    {
-        return transactionList;
-    }
 }
