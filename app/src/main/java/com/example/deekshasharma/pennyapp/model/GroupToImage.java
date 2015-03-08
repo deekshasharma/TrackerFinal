@@ -4,6 +4,7 @@ import com.example.deekshasharma.pennyapp.R;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 public class GroupToImage {
 
@@ -42,6 +43,15 @@ public class GroupToImage {
 
         }};
         return groupToImageMap;
+    }
+
+
+    /*
+    Returns all group names
+     */
+    public static Set<String> getGroups()
+    {
+        return getMapping().keySet();
     }
 
 }

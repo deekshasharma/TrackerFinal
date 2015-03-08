@@ -142,13 +142,6 @@ public class AddActivity extends ActionBarActivity {
             public void onClick(View v) {
                 postTransaction();
                 Toast.makeText(getApplicationContext(), "Transaction Added", Toast.LENGTH_SHORT).show();
-
-
-
-                //Go to View Transaction Fragment
-//                Fragment viewTransactionFragment = new ViewTransactionFragment();
-//                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-//                transaction.replace(R.id.frame_container,viewTransactionFragment).commit();
             }
         });
     }
@@ -211,7 +204,6 @@ public class AddActivity extends ActionBarActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_add, menu);
         return true;
     }
