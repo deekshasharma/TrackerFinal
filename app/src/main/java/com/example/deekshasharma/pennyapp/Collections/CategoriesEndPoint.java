@@ -1,4 +1,4 @@
-package com.example.deekshasharma.pennyapp.model;
+package com.example.deekshasharma.pennyapp.Collections;
 
 import android.content.Context;
 import android.util.Log;
@@ -9,6 +9,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.deekshasharma.pennyapp.model.CategoryItem;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -20,26 +21,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Categories {
+public class CategoriesEndPoint {
     public static List<CategoryItem> allCategories = Arrays.asList(new CategoryItem("name", "id", "groupName"));
-//    private static ListFragment listFragment;
 
     private ArrayAdapter categoryListAdapter;
     private Context context;
     private String groupName;
 
 
-//    public Categories(Context context, ListFragment lf, String groupName) {
-//        this.context = context;
-//        this.groupName = groupName;
-//        listFragment = lf;
-//        allCategories = new ArrayList<>();
-//        getCategoriesFromServer(this.groupName);
-//
-//    }
-
-    /////// Added to test with Activity
-    public Categories(Context context,  String groupName, ArrayAdapter categoryListAdapter) {
+    public CategoriesEndPoint(Context context, String groupName, ArrayAdapter categoryListAdapter) {
         this.context = context;
         this.groupName = groupName;
         this.categoryListAdapter = categoryListAdapter;
@@ -96,7 +86,6 @@ public class Categories {
                 e.printStackTrace();
             }
         }
-//        ((BaseAdapter) listFragment.getListView().getAdapter()).notifyDataSetChanged();
         categoryListAdapter.notifyDataSetChanged();
 
 

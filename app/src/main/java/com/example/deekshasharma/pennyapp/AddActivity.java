@@ -21,7 +21,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.deekshasharma.pennyapp.model.Categories;
+import com.example.deekshasharma.pennyapp.Collections.CategoriesEndPoint;
 import com.example.deekshasharma.pennyapp.model.CategoryItem;
 
 import org.json.JSONException;
@@ -63,7 +63,7 @@ public class AddActivity extends ActionBarActivity {
     protected void onResume()
     {
         super.onResume();
-        CategoryItem item = Categories.allCategories.get(position);
+        CategoryItem item = CategoriesEndPoint.allCategories.get(position);
         Log.d("name of category is: ", "this "+item.getName());
         selectedCategoryId = item.getId();
         selectedCategoryGroup = item.getGroupName();
@@ -194,7 +194,7 @@ public class AddActivity extends ActionBarActivity {
         amount = (EditText) findViewById(R.id.amount);
         params.put("amount", amount.getText().toString());
 
-        params.put("transactionDate", "2015-02-25T21:10:47.863");
+        params.put("transactionDate", "2015-03-09T21:10:47.863");
 
         params.put("debit", "true");
         return params;

@@ -10,8 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import com.example.deekshasharma.pennyapp.adapter.CategoryListAdapter;
-import com.example.deekshasharma.pennyapp.model.Categories;
-
+import com.example.deekshasharma.pennyapp.Collections.CategoriesEndPoint;
 
 
 public class CategoryActivity extends ActionBarActivity {
@@ -29,9 +28,9 @@ public class CategoryActivity extends ActionBarActivity {
         String groupName = intentFromGroup.getStringExtra("groupName");
 
         categoryListView = (ListView) findViewById(R.id.category_list_view);
-        ArrayAdapter categoryAdapter = new CategoryListAdapter(this,R.layout.category_list_item,Categories.allCategories);
+        ArrayAdapter categoryAdapter = new CategoryListAdapter(this,R.layout.category_list_item, CategoriesEndPoint.allCategories);
         categoryListView.setAdapter(categoryAdapter);
-        Categories categoriesSingleton = new Categories(this, groupName,categoryAdapter);
+        CategoriesEndPoint categoriesSingleton = new CategoriesEndPoint(this, groupName,categoryAdapter);
         categoryListView.setOnItemClickListener( new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

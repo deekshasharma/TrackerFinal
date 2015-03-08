@@ -7,8 +7,8 @@ import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.example.deekshasharma.pennyapp.Collections.TransactionsEndPoint;
 import com.example.deekshasharma.pennyapp.adapter.ViewTransactionListAdapter;
-import com.example.deekshasharma.pennyapp.model.TransactionsEndPoint;
 
 
 public class ViewTransactionActivity extends MainActivity {

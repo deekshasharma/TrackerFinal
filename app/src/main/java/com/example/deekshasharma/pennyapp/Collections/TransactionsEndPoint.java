@@ -1,14 +1,16 @@
-package com.example.deekshasharma.pennyapp.model;
+package com.example.deekshasharma.pennyapp.Collections;
 
 import android.content.Context;
 import android.util.Log;
 import android.widget.ArrayAdapter;
+
 import com.android.volley.AuthFailureError;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.deekshasharma.pennyapp.model.TransactionItem;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -83,11 +85,11 @@ public class TransactionsEndPoint {
             for (int i = 0; i < transactionsJson.length(); i++) {
                 JSONObject transactionsJsonJSONObject = transactionsJson.getJSONObject(i);
                 TransactionItem transactionItem = new TransactionItem
-                                                        (
-                                                          transactionsJsonJSONObject.getString("transactionDate"),
-                                                          transactionsJsonJSONObject.getString("name"),
-                                                          transactionsJsonJSONObject.getString("amount"),
-                                                          transactionsJsonJSONObject.getJSONObject("category").getString("groupName"));
+                        (
+                                transactionsJsonJSONObject.getString("transactionDate"),
+                                transactionsJsonJSONObject.getString("name"),
+                                transactionsJsonJSONObject.getString("amount"),
+                                transactionsJsonJSONObject.getJSONObject("category").getString("groupName"));
                 transactionList.add(transactionItem);
             }
 
