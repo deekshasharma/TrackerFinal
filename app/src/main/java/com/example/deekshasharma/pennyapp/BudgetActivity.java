@@ -1,12 +1,15 @@
 package com.example.deekshasharma.pennyapp;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+import com.example.deekshasharma.pennyapp.Collections.BudgetsEndPoint;
+import com.example.deekshasharma.pennyapp.adapter.BudgetListAdapter;
 
 
-//public class BudgetActivity extends ActionBarActivity {
 public class BudgetActivity extends MainActivity {
 
     @Override
@@ -16,6 +19,11 @@ public class BudgetActivity extends MainActivity {
         getLayoutInflater().inflate(R.layout.activity_main,frameLayout);
         getLayoutInflater().inflate(R.layout.activity_view_budget,frameLayout);
 
+        ListView budgetListView = (ListView) findViewById(R.id.budget_list_view);
+        ArrayAdapter budgetListAdapter = new BudgetListAdapter(this,R.layout.budget_list_item, BudgetsEndPoint.budgetItemList);
+        budgetListView.setAdapter(budgetListAdapter);
+
+        BudgetsEndPoint endPoint = new BudgetsEndPoint(this,budgetListAdapter);
     }
 
 

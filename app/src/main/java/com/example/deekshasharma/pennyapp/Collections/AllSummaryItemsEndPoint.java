@@ -1,7 +1,6 @@
 package com.example.deekshasharma.pennyapp.Collections;
 
 import android.content.Context;
-import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 
@@ -11,7 +10,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.deekshasharma.pennyapp.model.AsyncResponse;
 import com.example.deekshasharma.pennyapp.model.SummaryItem;
 
 import org.json.JSONArray;
@@ -23,7 +21,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class AllSummaryItemsEndPoint extends AsyncTask<Void, Void, String> {
+public class AllSummaryItemsEndPoint{
 
     private final String url = "https://api-pennyapp.rhcloud.com/rest/monthlySummaries/d8922b44-75af-4810-a87e-77adcf433cfd/2015/03";
     public static List<SummaryItem> summaryItemList = new ArrayList<>();
@@ -33,8 +31,6 @@ public class AllSummaryItemsEndPoint extends AsyncTask<Void, Void, String> {
     private String month;
     private String totalSpent;
 
-    public AsyncResponse delegate=null;
-
 
     public AllSummaryItemsEndPoint(Context context, ArrayAdapter summaryListAdapter)
     {
@@ -42,17 +38,6 @@ public class AllSummaryItemsEndPoint extends AsyncTask<Void, Void, String> {
         this.summaryListAdapter = summaryListAdapter;
         getSummaryItemsFromServer();
 
-    }
-
-    @Override
-    protected String doInBackground(Void... params) {
-        return null;
-    }
-
-    @Override
-    protected void onPostExecute(String result)
-    {
-        delegate.processFinish(result);
     }
 
 
@@ -88,7 +73,7 @@ public class AllSummaryItemsEndPoint extends AsyncTask<Void, Void, String> {
                 return headers;
             }
         };
-        queue.add(request);    }
+        queue.add(request);}
 
 
     /*
@@ -111,6 +96,8 @@ public class AllSummaryItemsEndPoint extends AsyncTask<Void, Void, String> {
                 summaryItemList.add(item);
             }
             summaryListAdapter.notifyDataSetChanged();
+//            ViewGroup viewGroup = (ViewGroup) ((Activity)context.getApplicationContext()).findViewById(R.id.summary_header);
+//            viewGroup.invalidate();
         }catch(JSONException exception)
         {
             exception.printStackTrace();
