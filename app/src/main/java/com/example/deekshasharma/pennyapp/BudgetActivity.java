@@ -39,7 +39,7 @@ public class BudgetActivity extends MainActivity {
         addToBudget.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), AddBudget.class);
+                Intent intent = new Intent(getApplicationContext(), AddBudgetActivity.class);
                 startActivity(intent);
             }
         });

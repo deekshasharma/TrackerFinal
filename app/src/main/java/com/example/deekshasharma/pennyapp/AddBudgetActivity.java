@@ -2,7 +2,6 @@ package com.example.deekshasharma.pennyapp;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -10,13 +9,15 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.Toast;
+
 import com.example.deekshasharma.pennyapp.model.GroupToImage;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
 
-public class AddBudget extends ActionBarActivity implements AdapterView.OnItemSelectedListener{
+public class AddBudgetActivity extends ActionBarActivity {
 
     private String groupSelected;
 
@@ -27,33 +28,40 @@ public class AddBudget extends ActionBarActivity implements AdapterView.OnItemSe
 
         setUpGroupSpinner();
         onAddCategoryClickListener();
-
-
     }
 
-    private void setUpGroupSpinner()
-    {
+    /*
+    Fills the group Spinner with group Titles
+     */
+    private void setUpGroupSpinner() {
         Spinner groupSpinner = (Spinner) findViewById(R.id.group_spinner);
-        groupSpinner.setOnItemSelectedListener(this);
+//        groupSpinner.setOnItemSelectedListener(this);
         Set<String> groups = GroupToImage.getGroups();
         List<String> groupList = new ArrayList<>(groups);
-        ArrayAdapter<String> groupAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, groupList);
+        ArrayAdapter<String> groupAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, groupList);
         groupAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         groupSpinner.setAdapter(groupAdapter);
+
+        groupSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                groupSelected = parent.getItemAtPosition(position).toString();
+
+                Toast.makeText(getApplicationContext(), "You have selected "+ groupSelected,Toast.LENGTH_SHORT).show();
+
+                ///////////////
+                // Get the respective categories for the group selected
+                ///////////////
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 
 
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
-    {
-        groupSelected = parent.getItemAtPosition(position).toString();
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent)
-    {
-
-    }
 
     /*
     Listens to AddCategory button

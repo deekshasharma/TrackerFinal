@@ -4,10 +4,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="com.example.deekshasharma.pennyapp.AddBudget">
-
-    <!--<TextView android:text="@string/hello_world" android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content" />-->
+    tools:context="com.example.deekshasharma.pennyapp.AddBudgetActivity">
 
 
     <Spinner
@@ -18,8 +15,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginLeft="191dp"
-        android:layout_marginStart="191dp"/>
-        <!--android:spinnerMode="dropdown" />-->
+        android:layout_marginStart="191dp"
+        android:prompt="@string/group_spinner_title"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -146,7 +143,6 @@
     <Switch
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Switch"
         android:id="@+id/switch1"
         android:layout_alignBottom="@+id/textView3"
         android:layout_toRightOf="@+id/textView3"
