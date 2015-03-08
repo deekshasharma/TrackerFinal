@@ -50,6 +50,14 @@
             android:name=".SummaryActivity"
             android:label="@string/title_activity_summary" >
         </activity>
+        <activity
+            android:name=".AddBudget"
+            android:label="@string/title_activity_add_budget"
+            android:parentActivityName=".BudgetActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.deekshasharma.pennyapp.BudgetActivity" />
+        </activity>
     </application>
 
 </manifest>

@@ -103,19 +103,45 @@
         android:id="@+id/budget_list_view"
         android:layout_marginTop="190dp" />
 
-    <TextView
-        android:layout_width="wrap_content"
+    <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:textAppearance="?android:attr/textAppearanceMedium"-->
+        <!--android:text="ADD NEW BUDGET"-->
+        <!--android:id="@+id/textView"-->
+        <!--android:textSize="40dip"-->
+        <!--android:layout_below="@+id/summary_header"-->
+        <!--android:width="340dip"-->
+        <!--android:layout_alignParentRight="true"-->
+        <!--android:layout_alignParentEnd="true"-->
+        <!--android:layout_alignParentLeft="true"-->
+        <!--android:layout_alignParentStart="true"-->
+        <!--android:paddingLeft="200dp" />-->
+
+    <TableRow
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="ADD NEW BUDGET"
-        android:id="@+id/textView"
-        android:textSize="40dip"
-        android:layout_below="@+id/summary_header"
-        android:width="340dip"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/tableRow"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:paddingLeft="200dp" />
+        android:paddingTop="10dip"
+        android:background="@color/background_material_dark"
+        android:layout_marginTop="120dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="ADD CATEGORY TO BUDGET"
+            android:id="@+id/add_category_to_budget"
+            android:textSize="20dip"
+            android:textColor="#fff8ffd3"
+            android:paddingTop="20dp"
+            android:layout_marginLeft="100dip"
+            android:paddingLeft="120dip"
+            android:clickable="true" />
+
+    </TableRow>
+
 
 </RelativeLayout>

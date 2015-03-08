@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="48dp"
-    android:background="@drawable/list_selector">
+    android:layout_height="48dp">
+    <!--android:background="@drawable/list_selector">-->
 
 
 
@@ -23,7 +23,6 @@
         android:layout_toRightOf="@id/budget_group_icon"
         android:minHeight="?android:attr/listPreferredItemHeightSmall"
         android:textAppearance="?android:attr/textAppearanceListItemSmall"
-        android:textColor="@color/list_item_title"
         android:gravity="center_vertical"
         android:paddingRight="40dp"
         android:text="Food &amp; Drink"
@@ -36,7 +35,6 @@
         android:layout_toRightOf="@id/budget_group_name"
         android:minHeight="?android:attr/listPreferredItemHeightSmall"
         android:textAppearance="?android:attr/textAppearanceListItemSmall"
-        android:textColor="@color/list_item_title"
         android:gravity="center_vertical"
         android:paddingRight="40dp"
         android:text="40%"
@@ -50,7 +48,6 @@
         android:layout_toRightOf="@id/budget_percent_spent"
         android:minHeight="?android:attr/listPreferredItemHeightSmall"
         android:textAppearance="?android:attr/textAppearanceListItemSmall"
-        android:textColor="@color/list_item_title"
         android:gravity="center_vertical"
         android:paddingRight="40dp"
         android:text="$360"

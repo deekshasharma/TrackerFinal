@@ -1,10 +1,13 @@
 package com.example.deekshasharma.pennyapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.deekshasharma.pennyapp.Collections.BudgetsEndPoint;
 import com.example.deekshasharma.pennyapp.adapter.BudgetListAdapter;
@@ -24,6 +27,22 @@ public class BudgetActivity extends MainActivity {
         budgetListView.setAdapter(budgetListAdapter);
 
         BudgetsEndPoint endPoint = new BudgetsEndPoint(this,budgetListAdapter);
+
+        onAddToBudgetClickListener();
+
+
+    }
+
+    private void onAddToBudgetClickListener()
+    {
+        TextView addToBudget = (TextView) findViewById(R.id.add_category_to_budget);
+        addToBudget.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), AddBudget.class);
+                startActivity(intent);
+            }
+        });
     }
 
 
