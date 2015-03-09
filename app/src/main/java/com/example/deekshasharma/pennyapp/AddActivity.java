@@ -152,7 +152,8 @@ public class AddActivity extends ActionBarActivity {
         RequestQueue queue = Volley.newRequestQueue(this);
         final String URL = "https://api-pennyapp.rhcloud.com/rest/transactions";
         JsonObjectRequest req = new JsonObjectRequest(URL, new JSONObject(getParams()),
-                new Response.Listener<JSONObject>() {
+                new Response.Listener<JSONObject>()
+                {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
