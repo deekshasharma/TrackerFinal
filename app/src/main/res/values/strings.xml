@@ -91,6 +91,7 @@
     <string name="title_activity_add_budget">Add Category To Budget</string>
 
     <string name="select_category_spinner">Select Category</string>
+    <string name="title_activity_summary_detail_view">SummaryDetail</string>
 
 
 

@@ -34,7 +34,7 @@ public class SummaryListAdapter extends ArrayAdapter<SummaryItem>{
         groupName.setText(summaryItemList.get(position).getGroupName());
 
         TextView spentOnGroup = (TextView) convertView.findViewById(R.id.get_spent_summary);
-        spentOnGroup.setText(summaryItemList.get(position).getSpent());
+        spentOnGroup.setText("$"+summaryItemList.get(position).getSpent());
 
         ImageView groupImage = (ImageView) convertView.findViewById(R.id.get_groupImage_summary);
         int imageId = GroupToImage.getImage(summaryItemList.get(position).getGroupName());

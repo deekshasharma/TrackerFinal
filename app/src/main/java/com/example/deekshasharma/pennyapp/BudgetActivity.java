@@ -46,9 +46,16 @@ public class BudgetActivity extends MainActivity {
         String month = Integer.toString(calendar.get(Calendar.MONTH) + 1);
         TextView monthTextView = (TextView) findViewById(R.id.get_month_budget);
         monthTextView.setText(month);
+
         String year = Integer.toString(calendar.get(Calendar.YEAR));
         TextView yearTextView = (TextView) findViewById(R.id.get_year_budget);
         yearTextView.setText(year);
+
+        int maxDaysInMonth = (Calendar.getInstance().getActualMaximum(Calendar.DAY_OF_MONTH));
+        Calendar cal = Calendar.getInstance();
+        int dayOfMonth = cal.get(Calendar.DAY_OF_MONTH);
+        TextView daysLeft = (TextView) findViewById(R.id.get_days_budget);
+        daysLeft.setText(Integer.toString(maxDaysInMonth - dayOfMonth));
     }
 
     /*

@@ -99,8 +99,6 @@ public class AllSummaryItemsEndPoint{
                 summaryItemList.add(item);
             }
             summaryListAdapter.notifyDataSetChanged();
-//            ViewGroup viewGroup = (ViewGroup) ((Activity)context.getApplicationContext()).findViewById(R.id.summary_header);
-//            viewGroup.invalidate();
         }catch(JSONException exception)
         {
             exception.printStackTrace();

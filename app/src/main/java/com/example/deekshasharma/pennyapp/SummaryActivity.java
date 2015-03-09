@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -22,34 +24,46 @@ public class SummaryActivity extends MainActivity {
         super.onCreate(savedInstanceState);
         getLayoutInflater().inflate(R.layout.activity_main,frameLayout);
         getLayoutInflater().inflate(R.layout.activity_summary,frameLayout);
+        setHeader();
 
         ListView summaryListView = (ListView) findViewById(R.id.summary_list_view);
-
         ArrayAdapter summaryListAdapter = new SummaryListAdapter(this,R.layout.summary_list_item, AllSummaryItemsEndPoint.summaryItemList);
         summaryListView.setAdapter(summaryListAdapter);
         AllSummaryItemsEndPoint endPoint = new AllSummaryItemsEndPoint(this,summaryListAdapter);
 
+        summaryListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-        TextView year = (TextView) findViewById(R.id.get_year_summary);
-        year.setText(endPoint.getYear());
-        TextView month = (TextView) findViewById(R.id.get_months_summary);
-        month.setText(endPoint.getMonth());
-        TextView totalSpent = (TextView) findViewById(R.id.get_total_spent_summary);
-        totalSpent.setText(endPoint.getTotalSpent());
+                Intent intent = new Intent(getApplicationContext(),SummaryDetailViewActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
     }
 
 
+    /*
+    Sets the header for Summary Activity
+     */
     private void setHeader()
     {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(new Date());
         String month = Integer.toString(calendar.get(Calendar.MONTH) + 1);
         TextView monthTextView = (TextView) findViewById(R.id.get_months_summary);
+
         monthTextView.setText(month);
         String year = Integer.toString(calendar.get(Calendar.YEAR));
         TextView yearTextView = (TextView) findViewById(R.id.get_year_summary);
         yearTextView.setText(year);
 
+        int maxDaysInMonth = (Calendar.getInstance().getActualMaximum(Calendar.DAY_OF_MONTH));
+        Calendar cal = Calendar.getInstance();
+        int dayOfMonth = cal.get(Calendar.DAY_OF_MONTH);
+        TextView daysLeft = (TextView) findViewById(R.id.get_days_summary);
+        daysLeft.setText(Integer.toString(maxDaysInMonth - dayOfMonth));
     }
 
 
