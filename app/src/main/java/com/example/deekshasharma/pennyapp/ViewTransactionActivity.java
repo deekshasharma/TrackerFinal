@@ -32,6 +32,15 @@ public class ViewTransactionActivity extends MainActivity {
         transListView.setAdapter(transListAdapter);
         TransactionsEndPoint endPoint = new TransactionsEndPoint(this,transListAdapter);
 
+        setHeader();
+
+    }
+
+    /*
+    Updates the year, month header on this Activity
+     */
+    private void setHeader()
+    {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(new Date());
         String month = Integer.toString(calendar.get(Calendar.MONTH) + 1);
@@ -40,7 +49,6 @@ public class ViewTransactionActivity extends MainActivity {
         String year = Integer.toString(calendar.get(Calendar.YEAR));
         TextView yearTextView = (TextView) findViewById(R.id.get_year_trans);
         yearTextView.setText(year);
-
 
     }
 

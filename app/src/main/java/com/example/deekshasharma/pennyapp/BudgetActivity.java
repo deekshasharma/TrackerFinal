@@ -12,6 +12,9 @@ import android.widget.TextView;
 import com.example.deekshasharma.pennyapp.Collections.BudgetsEndPoint;
 import com.example.deekshasharma.pennyapp.adapter.BudgetListAdapter;
 
+import java.util.Calendar;
+import java.util.Date;
+
 
 public class BudgetActivity extends MainActivity {
 
@@ -26,12 +29,31 @@ public class BudgetActivity extends MainActivity {
         budgetListView.setAdapter(budgetListAdapter);
 
         BudgetsEndPoint endPoint = new BudgetsEndPoint(this,budgetListAdapter);
-
+        setHeader();
         onAddToBudgetClickListener();
+
 
 
     }
 
+    /*
+    Sets the header for the application
+     */
+    private void setHeader()
+    {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(new Date());
+        String month = Integer.toString(calendar.get(Calendar.MONTH) + 1);
+        TextView monthTextView = (TextView) findViewById(R.id.get_month_budget);
+        monthTextView.setText(month);
+        String year = Integer.toString(calendar.get(Calendar.YEAR));
+        TextView yearTextView = (TextView) findViewById(R.id.get_year_budget);
+        yearTextView.setText(year);
+    }
+
+    /*
+    Listens to AddCategory To Budget label
+    */
     private void onAddToBudgetClickListener()
     {
         TextView addToBudget = (TextView) findViewById(R.id.add_category_to_budget);

@@ -10,6 +10,9 @@ import android.widget.TextView;
 import com.example.deekshasharma.pennyapp.Collections.AllSummaryItemsEndPoint;
 import com.example.deekshasharma.pennyapp.adapter.SummaryListAdapter;
 
+import java.util.Calendar;
+import java.util.Date;
+
 
 public class SummaryActivity extends MainActivity {
 
@@ -34,6 +37,21 @@ public class SummaryActivity extends MainActivity {
         TextView totalSpent = (TextView) findViewById(R.id.get_total_spent_summary);
         totalSpent.setText(endPoint.getTotalSpent());
     }
+
+
+    private void setHeader()
+    {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(new Date());
+        String month = Integer.toString(calendar.get(Calendar.MONTH) + 1);
+        TextView monthTextView = (TextView) findViewById(R.id.get_months_summary);
+        monthTextView.setText(month);
+        String year = Integer.toString(calendar.get(Calendar.YEAR));
+        TextView yearTextView = (TextView) findViewById(R.id.get_year_summary);
+        yearTextView.setText(year);
+
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
