@@ -149,6 +149,6 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:textIsSelectable="false"
-        android:textSize="30dip" />
+        android:textSize="20dip" />
 
 </RelativeLayout>

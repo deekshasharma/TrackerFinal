@@ -1,9 +1,7 @@
 package com.example.deekshasharma.pennyapp.Collections;
 
-import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
-import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 
 import com.android.volley.AuthFailureError;
@@ -12,7 +10,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.deekshasharma.pennyapp.R;
 import com.example.deekshasharma.pennyapp.model.SummaryItem;
 
 import org.json.JSONArray;
@@ -30,8 +27,6 @@ public class AllSummaryItemsEndPoint{
     public static List<SummaryItem> summaryItemList = new ArrayList<>();
     private ArrayAdapter summaryListAdapter;
     private Context context;
-    private String year;
-    private String month;
     private String totalSpent;
 
 
@@ -87,14 +82,11 @@ public class AllSummaryItemsEndPoint{
         summaryItemList.clear();
         try
         {
-            year = response.getString("year");
-            month = response.getString("month");
             totalSpent = response.getString("totalSpent");
             JSONArray distribution = response.getJSONArray("distributions");
             for(int i = 0; i < distribution.length(); i++)
             {
                 JSONObject object = distribution.getJSONObject(i);
-                System.out.println("JSOnObject at "+i +"is: " + object.toString());
                 SummaryItem item = new SummaryItem(object.getString("group"), object.getString("spent"));
                 summaryItemList.add(item);
             }
@@ -103,14 +95,6 @@ public class AllSummaryItemsEndPoint{
         {
             exception.printStackTrace();
         }
-    }
-
-    public String getYear() {
-        return year;
-    }
-
-    public String getMonth() {
-        return month;
     }
 
     public String getTotalSpent() {

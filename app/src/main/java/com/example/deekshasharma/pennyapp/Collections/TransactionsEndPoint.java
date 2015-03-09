@@ -17,6 +17,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,24 +28,62 @@ public class TransactionsEndPoint {
     private ArrayAdapter viewTransactionListAdapter;
     public static List<TransactionItem> transactionList = new ArrayList<>();
     private Context context;
-    private static final String URL = "https://api-pennyapp.rhcloud.com/rest/transactions/d8922b44-75af-4810-a87e-77adcf433cfd/2015/03";
+    private String groupName;
 
 
     public TransactionsEndPoint(Context context, ArrayAdapter viewTransactionListAdapter)
     {
         this.context = context;
         this.viewTransactionListAdapter = viewTransactionListAdapter;
-        getTransactionsFromServer();
+        String url = getUrlAllTrans();
+        getTransactionsFromServer(url);
+    }
+
+    public TransactionsEndPoint(Context context, ArrayAdapter viewTransactionListAdapter, String groupName)
+    {
+        this.context = context;
+        this.viewTransactionListAdapter = viewTransactionListAdapter;
+        this.groupName = groupName;
+        Log.d("GROUP IN ENDPOINT", this.groupName);
+        String url = getUrlFewTrans();
+        getTransactionsFromServer(url);
+    }
+
+
+    /*
+    Constructs the URL for all transactions
+     */
+    private String getUrlAllTrans()
+    {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(new Date());
+        String month = Integer.toString(calendar.get(Calendar.MONTH) + 1);
+        String year = Integer.toString(calendar.get(Calendar.YEAR));
+        return "https://api-pennyapp.rhcloud.com/rest/transactions/d8922b44-75af-4810-a87e-77adcf433cfd/"+year+"/"+month;
+    }
+
+    /*
+     Constructs the URL for a specific group
+     */
+    private String getUrlFewTrans()
+    {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(new Date());
+        String month = Integer.toString(calendar.get(Calendar.MONTH) + 1);
+        String year = Integer.toString(calendar.get(Calendar.YEAR));
+        final String encodedGroupName = groupName.replace(" ", "%20").replace("&", "%26");
+        return "https://api-pennyapp.rhcloud.com/rest/transactions/d8922b44-75af-4810-a87e-77adcf433cfd/"+year+"/"+month+"?categoryGroup="+encodedGroupName;
     }
 
 
     /*
     Gets all the transactions from the server
      */
-    private void getTransactionsFromServer()
+    private void getTransactionsFromServer(String url)
     {
+        transactionList.clear();
         RequestQueue queue = Volley.newRequestQueue(context);
-        JsonObjectRequest request = new JsonObjectRequest(URL,null,
+        JsonObjectRequest request = new JsonObjectRequest(url,null,
                 new Response.Listener<JSONObject>()
                 {
                     @Override

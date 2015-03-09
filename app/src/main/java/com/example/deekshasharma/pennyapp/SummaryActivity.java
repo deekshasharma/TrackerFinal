@@ -2,6 +2,7 @@ package com.example.deekshasharma.pennyapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -11,9 +12,11 @@ import android.widget.ListView;
 import android.widget.TextView;
 import com.example.deekshasharma.pennyapp.Collections.AllSummaryItemsEndPoint;
 import com.example.deekshasharma.pennyapp.adapter.SummaryListAdapter;
+import com.example.deekshasharma.pennyapp.model.SummaryItem;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 
 public class SummaryActivity extends MainActivity {
@@ -31,18 +34,13 @@ public class SummaryActivity extends MainActivity {
         summaryListView.setAdapter(summaryListAdapter);
         AllSummaryItemsEndPoint endPoint = new AllSummaryItemsEndPoint(this,summaryListAdapter);
 
-        summaryListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                Intent intent = new Intent(getApplicationContext(),SummaryDetailViewActivity.class);
-                startActivity(intent);
-            }
-        });
+//        TextView totalSpent = (TextView) findViewById(R.id.get_total_spent_summary);
+//        totalSpent.setText(endPoint.getTotalSpent());
 
+        summaryItemClickListener(summaryListView,AllSummaryItemsEndPoint.summaryItemList);
 
     }
-
 
     /*
     Sets the header for Summary Activity
@@ -66,6 +64,25 @@ public class SummaryActivity extends MainActivity {
         daysLeft.setText(Integer.toString(maxDaysInMonth - dayOfMonth));
     }
 
+
+    /*
+    Handles the click of listItem on the Summary screen
+     */
+    private void summaryItemClickListener(ListView summaryListView, final List<SummaryItem> summaries)
+    {
+        summaryListView.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+            {
+                Intent intent = new Intent(getApplicationContext(),SummaryDetailViewActivity.class);
+                Log.d("GROUP IN SUMMARY: ", summaries.get(position).getGroupName());
+                intent.putExtra("groupName",summaries.get(position).getGroupName());
+//                intent.putExtra("groupName",
+                startActivity(intent);
+            }
+        });
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
