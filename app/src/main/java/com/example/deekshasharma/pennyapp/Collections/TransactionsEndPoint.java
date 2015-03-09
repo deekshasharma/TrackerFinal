@@ -32,7 +32,6 @@ public class TransactionsEndPoint {
     private String groupName;
     private TextView numOfTrans;
 
-
     /*
     Constructor called by ViewTransaction Activity
      */
@@ -48,11 +47,12 @@ public class TransactionsEndPoint {
     /*
     Constructor called by SummaryDetailView Activity
      */
-    public TransactionsEndPoint(Context context, ArrayAdapter viewTransactionListAdapter, String groupName)
+    public TransactionsEndPoint(Context context, ArrayAdapter viewTransactionListAdapter, String groupName, TextView numOfTrans)
     {
         this.context = context;
         this.viewTransactionListAdapter = viewTransactionListAdapter;
         this.groupName = groupName;
+        this.numOfTrans = numOfTrans;
         String url = getUrlFewTrans();
         getTransactionsFromServer(url);
     }

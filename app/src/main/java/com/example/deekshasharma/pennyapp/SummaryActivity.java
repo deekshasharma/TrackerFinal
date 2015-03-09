@@ -35,10 +35,6 @@ public class SummaryActivity extends MainActivity {
         summaryListView.setAdapter(summaryListAdapter);
         AllSummaryItemsEndPoint endPoint = new AllSummaryItemsEndPoint(this,summaryListAdapter,totalSpent);
 
-
-//        TextView totalSpent = (TextView) findViewById(R.id.get_total_spent_summary);
-//        totalSpent.setText(endPoint.getTotalSpent());
-
         summaryItemClickListener(summaryListView,AllSummaryItemsEndPoint.summaryItemList);
 
     }
@@ -78,6 +74,7 @@ public class SummaryActivity extends MainActivity {
             {
                 Intent intent = new Intent(getApplicationContext(),SummaryDetailViewActivity.class);
                 intent.putExtra("groupName",summaries.get(position).getGroupName());
+                intent.putExtra("spentOnGroup", summaries.get(position).getSpent().toString());
                 startActivity(intent);
             }
         });
