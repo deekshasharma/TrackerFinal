@@ -65,7 +65,8 @@
         android:layout_alignBottom="@+id/category"
         android:layout_alignLeft="@+id/group_spinner"
         android:layout_alignStart="@+id/group_spinner"
-        android:spinnerMode="dropdown" />
+        android:spinnerMode="dropdown"
+        android:prompt="@string/select_category_spinner"/>
 
     <TextView
         android:layout_width="wrap_content"

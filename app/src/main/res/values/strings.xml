@@ -90,6 +90,8 @@
     <string name="title_activity_view_transaction">Transactions</string>
     <string name="title_activity_add_budget">Add Category To Budget</string>
 
+    <string name="select_category_spinner">Select Category</string>
+
 
 
 </resources>

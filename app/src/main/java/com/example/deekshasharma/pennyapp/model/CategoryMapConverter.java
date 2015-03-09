@@ -1,5 +1,7 @@
 package com.example.deekshasharma.pennyapp.model;
 
+import android.content.Context;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -11,26 +13,25 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class CategoryMapConverter {
-    private final String categoriesFile = getClass().getResource("/").getPath() + "categories.json";
     private final Map<String, Map<String, String>> categoriesMap = new HashMap<>();
     private static CategoryMapConverter converter;
 
-    public static CategoryMapConverter getInstance() {
+    public static CategoryMapConverter getInstance(Context context) {
         if (converter == null) {
-            converter = new CategoryMapConverter();
+            converter = new CategoryMapConverter(context);
         }
         return converter;
     }
 
-    private CategoryMapConverter () {
-        generateCategoriesMapFromFile(categoriesFile);
+    private CategoryMapConverter (Context context) {
+        generateCategoriesMapFromFile(context);
     }
 
-    private void generateCategoriesMapFromFile(final String categoriesFile)
+    private void generateCategoriesMapFromFile(Context context)
     {
         try
         {
-            final JSONArray array = new JSONArray(loadJSONFromAsset());
+            final JSONArray array = new JSONArray(loadJSONFromAsset(context));
             for (int i = 0; i < array.length(); i++)
             {
                 final JSONObject jsonObject = array.getJSONObject(i);
@@ -63,13 +64,11 @@ public class CategoryMapConverter {
 
     }
 
-    private String loadJSONFromAsset() {
+    private String loadJSONFromAsset(Context context) {
         String json = null;
         try {
 
-            //http://stackoverflow.com/questions/19945411/android-java-how-can-i-parse-a-local-json-file-from-assets-folder-into-a-listvi
-//			final InputStream is = getAssets().open("yourfilename.json");
-            final InputStream is = new FileInputStream(categoriesFile);
+			final InputStream is = context.getAssets().open("categories.json");
             final int size = is.available();
             final byte[] buffer = new byte[size];
             is.read(buffer);
@@ -88,7 +87,4 @@ public class CategoryMapConverter {
         return categoriesMap;
     }
 
-//    public static void main(String[] args) {
-//        final CategoryMapConverter c = CategoryMapConverter.getInstance();
-//    }
 }
