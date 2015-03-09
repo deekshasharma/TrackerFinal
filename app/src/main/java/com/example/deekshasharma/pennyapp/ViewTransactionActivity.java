@@ -26,11 +26,12 @@ public class ViewTransactionActivity extends MainActivity {
 
 
         ListView transListView = (ListView) findViewById(R.id.trans_list_view);
+        TextView numOfTrans = (TextView) findViewById(R.id.get_num_trans);
         ArrayAdapter transListAdapter = new ViewTransactionListAdapter(this,
                                         R.layout.transaction_list_item,
                                         TransactionsEndPoint.transactionList);
         transListView.setAdapter(transListAdapter);
-        TransactionsEndPoint endPoint = new TransactionsEndPoint(this,transListAdapter);
+        TransactionsEndPoint endPoint = new TransactionsEndPoint(this,transListAdapter,numOfTrans);
 
         setHeader();
 

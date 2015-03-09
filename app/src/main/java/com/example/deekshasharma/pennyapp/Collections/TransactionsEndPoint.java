@@ -3,6 +3,7 @@ package com.example.deekshasharma.pennyapp.Collections;
 import android.content.Context;
 import android.util.Log;
 import android.widget.ArrayAdapter;
+import android.widget.TextView;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.RequestQueue;
@@ -29,16 +30,24 @@ public class TransactionsEndPoint {
     public static List<TransactionItem> transactionList = new ArrayList<>();
     private Context context;
     private String groupName;
+    private TextView numOfTrans;
 
 
-    public TransactionsEndPoint(Context context, ArrayAdapter viewTransactionListAdapter)
+    /*
+    Constructor called by ViewTransaction Activity
+     */
+    public TransactionsEndPoint(Context context, ArrayAdapter viewTransactionListAdapter,TextView numOfTrans)
     {
         this.context = context;
         this.viewTransactionListAdapter = viewTransactionListAdapter;
+        this.numOfTrans = numOfTrans;
         String url = getUrlAllTrans();
         getTransactionsFromServer(url);
     }
 
+    /*
+    Constructor called by SummaryDetailView Activity
+     */
     public TransactionsEndPoint(Context context, ArrayAdapter viewTransactionListAdapter, String groupName)
     {
         this.context = context;
@@ -134,6 +143,8 @@ public class TransactionsEndPoint {
             }
 
             viewTransactionListAdapter.notifyDataSetChanged();
+            if(numOfTrans != null)
+            {numOfTrans.setText(Integer.toString(transactionList.size()));}
         } catch (JSONException e) {
             e.printStackTrace();
         }
