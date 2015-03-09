@@ -30,9 +30,10 @@ public class SummaryActivity extends MainActivity {
         setHeader();
 
         ListView summaryListView = (ListView) findViewById(R.id.summary_list_view);
+        TextView totalSpent = (TextView) findViewById(R.id.get_total_spent_summary);
         ArrayAdapter summaryListAdapter = new SummaryListAdapter(this,R.layout.summary_list_item, AllSummaryItemsEndPoint.summaryItemList);
         summaryListView.setAdapter(summaryListAdapter);
-        AllSummaryItemsEndPoint endPoint = new AllSummaryItemsEndPoint(this,summaryListAdapter);
+        AllSummaryItemsEndPoint endPoint = new AllSummaryItemsEndPoint(this,summaryListAdapter,totalSpent);
 
 
 //        TextView totalSpent = (TextView) findViewById(R.id.get_total_spent_summary);
@@ -76,9 +77,7 @@ public class SummaryActivity extends MainActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id)
             {
                 Intent intent = new Intent(getApplicationContext(),SummaryDetailViewActivity.class);
-                Log.d("GROUP IN SUMMARY: ", summaries.get(position).getGroupName());
                 intent.putExtra("groupName",summaries.get(position).getGroupName());
-//                intent.putExtra("groupName",
                 startActivity(intent);
             }
         });

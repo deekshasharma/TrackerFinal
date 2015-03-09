@@ -27,8 +27,6 @@ public class SummaryDetailViewActivity extends ActionBarActivity {
                                                 TransactionsEndPoint.transactionList);
         detailListView.setAdapter(transactionListAdapter);
         TransactionsEndPoint endPoint = new TransactionsEndPoint(this,transactionListAdapter,groupName);
-
-
     }
 
 

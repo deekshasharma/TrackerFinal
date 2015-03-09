@@ -3,6 +3,7 @@ package com.example.deekshasharma.pennyapp.Collections;
 import android.content.Context;
 import android.util.Log;
 import android.widget.ArrayAdapter;
+import android.widget.TextView;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.RequestQueue;
@@ -27,13 +28,14 @@ public class AllSummaryItemsEndPoint{
     public static List<SummaryItem> summaryItemList = new ArrayList<>();
     private ArrayAdapter summaryListAdapter;
     private Context context;
-    private String totalSpent;
+    private TextView totalSpent;
 
 
-    public AllSummaryItemsEndPoint(Context context, ArrayAdapter summaryListAdapter)
+    public AllSummaryItemsEndPoint(Context context, ArrayAdapter summaryListAdapter, TextView totalSpent)
     {
         this.context = context;
         this.summaryListAdapter = summaryListAdapter;
+        this.totalSpent = totalSpent;
         getSummaryItemsFromServer();
 
     }
@@ -80,9 +82,10 @@ public class AllSummaryItemsEndPoint{
     private void createSummaryCollectionFromResponse(JSONObject response)
     {
         summaryItemList.clear();
+        String total;
         try
         {
-            totalSpent = response.getString("totalSpent");
+            total = response.getString("totalSpent");
             JSONArray distribution = response.getJSONArray("distributions");
             for(int i = 0; i < distribution.length(); i++)
             {
@@ -91,13 +94,11 @@ public class AllSummaryItemsEndPoint{
                 summaryItemList.add(item);
             }
             summaryListAdapter.notifyDataSetChanged();
+            totalSpent.setText("$"+total);
         }catch(JSONException exception)
         {
             exception.printStackTrace();
         }
     }
 
-    public String getTotalSpent() {
-        return totalSpent;
-    }
 }
