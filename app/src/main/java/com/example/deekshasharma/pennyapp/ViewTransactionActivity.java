@@ -6,9 +6,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.deekshasharma.pennyapp.Collections.TransactionsEndPoint;
 import com.example.deekshasharma.pennyapp.adapter.ViewTransactionListAdapter;
+
+import java.util.Calendar;
+import java.util.Date;
 
 
 public class ViewTransactionActivity extends MainActivity {
@@ -27,6 +31,16 @@ public class ViewTransactionActivity extends MainActivity {
                                         TransactionsEndPoint.transactionList);
         transListView.setAdapter(transListAdapter);
         TransactionsEndPoint endPoint = new TransactionsEndPoint(this,transListAdapter);
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(new Date());
+        String month = Integer.toString(calendar.get(Calendar.MONTH) + 1);
+        TextView monthTextView = (TextView) findViewById(R.id.get_month_trans);
+        monthTextView.setText(month);
+        String year = Integer.toString(calendar.get(Calendar.YEAR));
+        TextView yearTextView = (TextView) findViewById(R.id.get_year_trans);
+        yearTextView.setText(year);
+
 
     }
 

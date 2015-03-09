@@ -1,5 +1,6 @@
 package com.example.deekshasharma.pennyapp;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -117,8 +118,6 @@ public class AddBudgetActivity extends ActionBarActivity {
         });
     }
 
-
-
     /*
     Listens to AddCategory button
      */
@@ -150,6 +149,9 @@ public class AddBudgetActivity extends ActionBarActivity {
 
                 BudgetsEndPoint endPoint = new BudgetsEndPoint(getApplicationContext(),addBudgetList);
                 endPoint.postBudgetCategory(getApplicationContext());
+
+                Intent intent = new Intent(getApplicationContext(),BudgetActivity.class);
+                startActivity(intent);
 
                 Toast.makeText(getApplicationContext(), "Category added", Toast.LENGTH_SHORT).show();
 

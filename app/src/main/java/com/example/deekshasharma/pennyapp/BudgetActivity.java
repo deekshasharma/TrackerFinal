@@ -18,7 +18,6 @@ public class BudgetActivity extends MainActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         getLayoutInflater().inflate(R.layout.activity_main,frameLayout);
         getLayoutInflater().inflate(R.layout.activity_view_budget,frameLayout);
 
