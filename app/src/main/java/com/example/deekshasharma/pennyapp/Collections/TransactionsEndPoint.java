@@ -53,7 +53,6 @@ public class TransactionsEndPoint {
         this.context = context;
         this.viewTransactionListAdapter = viewTransactionListAdapter;
         this.groupName = groupName;
-        Log.d("GROUP IN ENDPOINT", this.groupName);
         String url = getUrlFewTrans();
         getTransactionsFromServer(url);
     }
