@@ -27,9 +27,13 @@ import com.example.deekshasharma.pennyapp.model.CategoryItem;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+
 
 
 public class AddActivity extends ActionBarActivity {
@@ -38,7 +42,7 @@ public class AddActivity extends ActionBarActivity {
     private TextView date;
     private Calendar myCalender;
     private DatePickerDialog datePickerDialog;
-    private String[] allMonths = {"JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"};
+    private String[] allMonths = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
     private TextView categoryName;
     private Button addTransactionButton;
     private EditText amount;
@@ -64,7 +68,6 @@ public class AddActivity extends ActionBarActivity {
     {
         super.onResume();
         CategoryItem item = CategoriesEndPoint.allCategories.get(position);
-        Log.d("name of category is: ", "this "+item.getName());
         selectedCategoryId = item.getId();
         selectedCategoryGroup = item.getGroupName();
         categoryName = (TextView) findViewById(R.id.category);
@@ -76,7 +79,6 @@ public class AddActivity extends ActionBarActivity {
     {
         super.onNewIntent(intent);
         position = intent.getIntExtra("position", 0);
-        Log.d("position is ", "this "+position);
     }
 
 
@@ -139,10 +141,43 @@ public class AddActivity extends ActionBarActivity {
         addTransactionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                postTransaction();
-                Toast.makeText(getApplicationContext(), "Transaction Added", Toast.LENGTH_SHORT).show();
+                if(validateFields())
+                {
+                    postTransaction();
+                    Intent intent = new Intent(getApplicationContext(),ViewTransactionActivity.class);
+                    startActivity(intent);
+                }
+                else
+                {
+                    Toast.makeText(getApplicationContext()," Please verify all Fields", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
+    }
+
+    /*
+    Validate all the form fields before saving transaction
+     */
+    private boolean validateFields()
+    {
+        transactionName = (EditText) findViewById(R.id.transaction_name);
+        amount = (EditText) findViewById(R.id.amount);
+        date = (TextView) findViewById(R.id.date);
+        categoryName = (TextView) findViewById(R.id.category);
+
+
+        if(transactionName.getText().toString() == "" ||
+                amount.getText().toString() == "" ||
+                date.getText().toString() == "" ||
+                categoryName.getText().toString() == "")
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
     }
 
     /*
@@ -195,11 +230,34 @@ public class AddActivity extends ActionBarActivity {
         amount = (EditText) findViewById(R.id.amount);
         params.put("amount", amount.getText().toString());
 
-        params.put("transactionDate", "2015-03-09T21:10:47.863");
+        params.put("transactionDate", getDateInUTC());
 
         params.put("debit", "true");
         return params;
     }
+
+    private String getDateInUTC()
+    {
+        SimpleDateFormat f1 = new SimpleDateFormat("d-MMM-yyyy");
+
+        Date d = null;
+        try {
+            d = (f1.parse(date.getText().toString()));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(d);
+        Calendar current = Calendar.getInstance();
+        cal.add(Calendar.HOUR_OF_DAY, current.get(Calendar.HOUR));
+        cal.add(Calendar.MINUTE, current.get(Calendar.MINUTE));
+        cal.add(Calendar.SECOND, current.get(Calendar.SECOND));
+        cal.add(Calendar.MILLISECOND,current.get(Calendar.MILLISECOND) );
+        return(f.format(cal.getTime()));
+
+    }
+
 
 
     @Override
