@@ -8,6 +8,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/abc_search_url_text"
         android:id="@+id/category_name"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp"/>

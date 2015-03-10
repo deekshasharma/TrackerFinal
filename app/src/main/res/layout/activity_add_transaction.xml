@@ -61,4 +61,11 @@
         android:paddingTop="20dip"
         android:hint="Date" />
 
+    <ImageView
+        android:layout_width="40dip"
+        android:layout_height="50dip"
+        android:id="@+id/add_trans_image"
+        android:layout_gravity="center"
+        android:layout_marginLeft="40dp" />
+
 </FrameLayout>

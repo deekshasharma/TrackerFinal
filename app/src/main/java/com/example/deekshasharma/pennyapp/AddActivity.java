@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,8 +22,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.deekshasharma.pennyapp.Collections.CategoriesEndPoint;
-import com.example.deekshasharma.pennyapp.model.CategoryItem;
+import com.example.deekshasharma.pennyapp.model.GroupToImage;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -47,9 +47,7 @@ public class AddActivity extends ActionBarActivity {
     private Button addTransactionButton;
     private EditText amount;
     private String selectedCategoryId;
-    private String selectedCategoryGroup;
     private EditText transactionName;
-    private int position;
 
 
     @Override
@@ -67,18 +65,19 @@ public class AddActivity extends ActionBarActivity {
     protected void onResume()
     {
         super.onResume();
-        CategoryItem item = CategoriesEndPoint.allCategories.get(position);
-        selectedCategoryId = item.getId();
-        selectedCategoryGroup = item.getGroupName();
-        categoryName = (TextView) findViewById(R.id.category);
-        categoryName.setText(item.getName());
     }
+
 
     @Override
     protected void onNewIntent(Intent intent)
     {
         super.onNewIntent(intent);
-        position = intent.getIntExtra("position", 0);
+        selectedCategoryId = intent.getStringExtra("categoryId");
+        categoryName = (TextView) findViewById(R.id.category);
+        categoryName.setText(intent.getStringExtra("selectedCategory"));
+        ImageView image = (ImageView)findViewById(R.id.add_trans_image);
+        int imageId = GroupToImage.getImage(intent.getStringExtra("groupName"));
+        image.setImageResource(imageId);
     }
 
 
@@ -167,10 +166,10 @@ public class AddActivity extends ActionBarActivity {
         categoryName = (TextView) findViewById(R.id.category);
 
 
-        if(transactionName.getText().toString() == "" ||
-                amount.getText().toString() == "" ||
-                date.getText().toString() == "" ||
-                categoryName.getText().toString() == "")
+        if(transactionName.getText().toString().isEmpty() ||
+                amount.getText().toString().isEmpty() ||
+                date.getText().toString().isEmpty()  ||
+                categoryName.getText().toString().isEmpty())
         {
             return false;
         }
@@ -253,7 +252,7 @@ public class AddActivity extends ActionBarActivity {
         cal.add(Calendar.HOUR_OF_DAY, current.get(Calendar.HOUR));
         cal.add(Calendar.MINUTE, current.get(Calendar.MINUTE));
         cal.add(Calendar.SECOND, current.get(Calendar.SECOND));
-        cal.add(Calendar.MILLISECOND,current.get(Calendar.MILLISECOND) );
+        cal.add(Calendar.MILLISECOND, current.get(Calendar.MILLISECOND));
         return(f.format(cal.getTime()));
 
     }

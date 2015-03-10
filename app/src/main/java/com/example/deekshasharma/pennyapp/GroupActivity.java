@@ -60,40 +60,6 @@ public class GroupActivity extends ActionBarActivity {
     }
 
 
-                /////////////////
-//                Fragment categoryFragment = new CategoryFragment();
-//                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-//                Bundle args = new Bundle();
-//                if(position == 0)
-//                {
-//                    args.putString("groupName","Food & Drink");
-//                }
-//                else if(position == 6)
-//                {
-//                    args.putString("groupName","Sports & Fitness");
-//                }
-//                else if(position == 7)
-//                {
-//                    args.putString("groupName", "Gifts & Donations");
-//                }
-//                else if(position == 8)
-//                {
-//                    args.putString("groupName", "Health & Medical");
-//                }
-//                else
-//                {
-//                    args.putString("groupName", groupTitles[position]);
-//                }
-//
-//                categoryFragment.setArguments(args);
-//                transaction.replace(R.id.frame_container,categoryFragment).commit();
-//                setTitle("Select Category");
-//            }
-//        });
-//    }
-
-
-
     /*
   Add all IconWithTitleItem objects into groupList
    */
