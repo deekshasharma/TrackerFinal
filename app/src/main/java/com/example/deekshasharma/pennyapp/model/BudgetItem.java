@@ -13,6 +13,7 @@ public class BudgetItem {
     private boolean groupOnly;
     private String percentSpent;
     private String budgeted;
+    private String available;
 
 
     public BudgetItem(JSONObject jsonObject) {
@@ -22,6 +23,7 @@ public class BudgetItem {
             this.groupName = jsonObject.getJSONObject("category").getString("groupName");
             this.groupOnly = jsonObject.getBoolean("groupOnly");
             this.budgeted = jsonObject.getString("budgeted");
+            this.available = jsonObject.getString("available");
 
             double budgeted = Double.parseDouble(jsonObject.getString("budgeted"));
             double available = Double.parseDouble(jsonObject.getString("available"));
@@ -41,6 +43,10 @@ public class BudgetItem {
         BigDecimal bd = new BigDecimal(value);
         bd = bd.setScale(places, RoundingMode.HALF_UP);
         return bd.doubleValue();
+    }
+
+    public String getAvailable() {
+        return available;
     }
 
     public String getCategoryName() {

@@ -59,10 +59,26 @@ public class TransactionsEndPoint {
         getTransactionsFromServer(url);
     }
 
+
+    /*
+    Constructor called for Deleting a Transaction from ViewTransactionActivity
+     */
     public TransactionsEndPoint(Context context,String transId)
     {
         this.context = context;
         deleteTransaction(transId);
+    }
+
+    /*
+    Constructor called by BudgetDetail Activity
+     */
+    public TransactionsEndPoint(Context context,ArrayAdapter viewTransactionListAdapter,String groupName)
+    {
+        this.context=context;
+        this.viewTransactionListAdapter= viewTransactionListAdapter;
+        this.groupName = groupName;
+        String url = getUrlFewTrans();
+        getTransactionsFromServer(url);
     }
 
 

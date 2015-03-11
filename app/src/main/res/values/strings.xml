@@ -118,6 +118,7 @@
 
     <string name="select_category_spinner">Select Category</string>
     <string name="title_activity_summary_detail_view">SummaryDetail</string>
+    <string name="title_activity_budget_detail_view">BudgetDetail</string>
 
 
 

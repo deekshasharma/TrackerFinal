@@ -5,15 +5,19 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.deekshasharma.pennyapp.Collections.BudgetsEndPoint;
 import com.example.deekshasharma.pennyapp.adapter.BudgetListAdapter;
+import com.example.deekshasharma.pennyapp.model.BudgetItem;
+import com.example.deekshasharma.pennyapp.model.SummaryItem;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 
 public class BudgetActivity extends MainActivity {
@@ -27,9 +31,10 @@ public class BudgetActivity extends MainActivity {
         ListView budgetListView = (ListView) findViewById(R.id.budget_list_view);
         ArrayAdapter budgetListAdapter = new BudgetListAdapter(this,R.layout.budget_list_item, BudgetsEndPoint.budgetItemList);
         budgetListView.setAdapter(budgetListAdapter);
+        new BudgetsEndPoint(this,budgetListAdapter);
 
-        BudgetsEndPoint endPoint = new BudgetsEndPoint(this,budgetListAdapter);
         setHeader();
+        budgetItemClickListener(budgetListView,BudgetsEndPoint.budgetItemList);  ///// Added now
         onAddToBudgetClickListener();
 
 
@@ -59,7 +64,7 @@ public class BudgetActivity extends MainActivity {
     }
 
     /*
-    Listens to AddCategory To Budget label
+    Listens to AddCategoryToBudget label
     */
     private void onAddToBudgetClickListener()
     {
@@ -72,6 +77,28 @@ public class BudgetActivity extends MainActivity {
             }
         });
     }
+
+
+    /*
+    Handles the click of listItem on the Summary screen
+     */
+    private void budgetItemClickListener(ListView budgetListView, final List<BudgetItem> budgets)
+    {
+        budgetListView.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+            {
+                Intent intent = new Intent(getApplicationContext(),BudgetDetailViewActivity.class);
+                intent.putExtra("groupName",budgets.get(position).getGroupName());
+                intent.putExtra("percentSpent",budgets.get(position).getPercentSpent());
+                intent.putExtra("budgeted",budgets.get(position).getBudgeted());
+                intent.putExtra("available",budgets.get(position).getAvailable());
+                startActivity(intent);
+            }
+        });
+    }
+
 
 
     @Override

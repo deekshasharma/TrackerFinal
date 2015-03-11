@@ -15,35 +15,39 @@ import com.example.deekshasharma.pennyapp.adapter.ViewTransactionListAdapter;
 import com.example.deekshasharma.pennyapp.model.GroupToImage;
 
 
-public class SummaryDetailViewActivity extends ActionBarActivity {
+public class BudgetDetailViewActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_summary_detail_view);
+        setContentView(R.layout.activity_budget_detail_view);
 
         Intent intent = getIntent();
         String groupName = intent.getStringExtra("groupName");
-        String spentOnGroup = intent.getStringExtra("spentOnGroup");
+        String percentSpent = intent.getStringExtra("percentSpent");
+        String budgeted = intent.getStringExtra("budgeted");
+        String avail = intent.getStringExtra("available");
 
-        setUpHeader(groupName,spentOnGroup);
+        setUpHeader(groupName,percentSpent,budgeted,avail);
 
-        ListView detailListView = (ListView) findViewById(R.id.budget_detail_list_view);
-        TextView numOfTrans = (TextView)findViewById(R.id.get_detail_num_trans);
+        ListView budgetListView = (ListView)findViewById(R.id.budget_detail_list_view);
         ArrayAdapter transactionListAdapter = new ViewTransactionListAdapter(this,
-                                                R.layout.transaction_list_item,
+                                                    R.layout.transaction_list_item,
                                                 TransactionsEndPoint.transactionList);
-        detailListView.setAdapter(transactionListAdapter);
-        TransactionsEndPoint endPoint = new TransactionsEndPoint(this,transactionListAdapter,groupName,numOfTrans);
+        budgetListView.setAdapter(transactionListAdapter);
+        new TransactionsEndPoint(this,transactionListAdapter,groupName);
+
+
     }
+
 
     /*
     Populate values in the header of this Activity
      */
-    private void setUpHeader(String groupName, String spentOnGroup)
+    private void setUpHeader(String groupName, String percentSpent,String budgeted, String avail)
     {
-        TextView spent = (TextView) findViewById(R.id.get_spent_on_grp);
-        spent.setText("$"+spentOnGroup);
+        TextView spent = (TextView) findViewById(R.id.detailBudget_getSpent);
+        spent.setText(percentSpent+"%");
 
         TextView group = (TextView) findViewById(R.id.detailBudget_getGrpName);
         group.setText(groupName);
@@ -52,19 +56,32 @@ public class SummaryDetailViewActivity extends ActionBarActivity {
         ImageView groupIcon = (ImageView) findViewById(R.id.detailBudget_getGrpIcon);
         groupIcon.setImageResource(imageId);
 
+        TextView budgetAmount = (TextView)findViewById(R.id.detailBudget_getBudgeted);
+        budgetAmount.setText("$"+budgeted);
+
+        TextView available = (TextView)findViewById(R.id.detailBudget_getAvailable);
+        available.setText("$"+avail);
+
+
     }
+
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_summary_detail_view, menu);
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_budget_detail_view, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
+        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }

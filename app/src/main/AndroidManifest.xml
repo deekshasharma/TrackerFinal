@@ -67,6 +67,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.deekshasharma.pennyapp.SummaryActivity" />
         </activity>
+        <activity
+            android:name=".BudgetDetailViewActivity"
+            android:label="@string/title_activity_budget_detail_view"
+            android:parentActivityName=".BudgetActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.deekshasharma.pennyapp.BudgetActivity" />
+        </activity>
     </application>
 
 </manifest>
