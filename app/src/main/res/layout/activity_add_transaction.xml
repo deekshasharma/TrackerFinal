@@ -21,7 +21,7 @@
     <EditText
         android:layout_width="248dp"
         android:layout_height="wrap_content"
-        android:inputType="number"
+        android:inputType="numberDecimal"
         android:ems="10"
         android:id="@+id/amount"
         android:layout_gravity="center_horizontal|top"
