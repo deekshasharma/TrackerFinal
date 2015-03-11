@@ -128,35 +128,57 @@ public class AddBudgetActivity extends ActionBarActivity {
             @Override
             public void onClick(View v)
             {
-                EditText budgetAmount = (EditText) findViewById(R.id.get_amount);
-                String amount = budgetAmount.getText().toString();
-                String categoryId = getCategoryId();
-                String groupOnly = getGroupOnlyFlag();
-                getSwitchState();
-                String recurring = Boolean.toString(recurringFlag);
-                Calendar calendar = Calendar.getInstance();
-                calendar.setTime(new Date());
-                String month = Integer.toString(calendar.get(Calendar.MONTH) + 1);
-                String year = Integer.toString(calendar.get(Calendar.YEAR));
+                if(validateFields()) {
+                    EditText budgetAmount = (EditText) findViewById(R.id.get_amount);
+                    String amount = budgetAmount.getText().toString();
+                    String categoryId = getCategoryId();
+                    String groupOnly = getGroupOnlyFlag();
+                    getSwitchState();
+                    String recurring = Boolean.toString(recurringFlag);
+                    Calendar calendar = Calendar.getInstance();
+                    calendar.setTime(new Date());
+                    String month = Integer.toString(calendar.get(Calendar.MONTH) + 1);
+                    String year = Integer.toString(calendar.get(Calendar.YEAR));
 
-                List<String> addBudgetList = new ArrayList<>();
-                addBudgetList.add(amount);
-                addBudgetList.add(categoryId);
-                addBudgetList.add(groupOnly);
-                addBudgetList.add(recurring);
-                addBudgetList.add(month);
-                addBudgetList.add(year);
+                    List<String> addBudgetList = new ArrayList<>();
+                    addBudgetList.add(amount);
+                    addBudgetList.add(categoryId);
+                    addBudgetList.add(groupOnly);
+                    addBudgetList.add(recurring);
+                    addBudgetList.add(month);
+                    addBudgetList.add(year);
 
-                BudgetsEndPoint endPoint = new BudgetsEndPoint(getApplicationContext(),addBudgetList);
-                endPoint.postBudgetCategory(getApplicationContext());
+                    BudgetsEndPoint endPoint = new BudgetsEndPoint(getApplicationContext(), addBudgetList);
+                    endPoint.postBudgetCategory(getApplicationContext());
 
-                Intent intent = new Intent(getApplicationContext(),BudgetActivity.class);
-                startActivity(intent);
+                    Intent intent = new Intent(getApplicationContext(), BudgetActivity.class);
+                    startActivity(intent);
 
-                Toast.makeText(getApplicationContext(), "Category added", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Category added", Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    Toast.makeText(getApplicationContext()," Please verify mandatory Fields", Toast.LENGTH_SHORT).show();
 
+                }
             }
         });
+    }
+
+    private boolean validateFields()
+    {
+        EditText budgetAmount = (EditText) findViewById(R.id.get_amount);
+        groupSpinner = (Spinner) findViewById(R.id.group_spinner);
+
+        if(groupSpinner.getSelectedItem() == null || budgetAmount.getText().toString().isEmpty())
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+
     }
 
     /*
@@ -227,7 +249,6 @@ public class AddBudgetActivity extends ActionBarActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_add_budget, menu);
         return true;
     }
@@ -236,7 +257,6 @@ public class AddBudgetActivity extends ActionBarActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
