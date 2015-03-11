@@ -6,15 +6,18 @@ public class TransactionItem {
     private String transactionDate;
     private String amount;
     private String groupName;
-    private int transactionId;
+    private String transactionId;
 
 
-    public TransactionItem(String date, String transactionName, String amount, String groupName)
+    public TransactionItem(String date, String transactionName,
+                           String amount, String groupName,
+                           String transactionId)
     {
         this.transactionDate = date;
         this.transactionName = transactionName;
         this.amount = amount;
         this.groupName = groupName;
+        this.transactionId = transactionId;
     }
 
     public String getGroupName() {
@@ -33,4 +36,7 @@ public class TransactionItem {
         return amount;
     }
 
+    public String getTransactionId() {
+        return transactionId;
+    }
 }

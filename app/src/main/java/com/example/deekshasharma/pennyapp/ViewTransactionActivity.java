@@ -2,8 +2,12 @@ package com.example.deekshasharma.pennyapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.ContextMenu;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -35,6 +39,8 @@ public class ViewTransactionActivity extends MainActivity {
 
         setHeader();
 
+        registerForContextMenu(transListView);
+
     }
 
     /*
@@ -50,7 +56,6 @@ public class ViewTransactionActivity extends MainActivity {
         String year = Integer.toString(calendar.get(Calendar.YEAR));
         TextView yearTextView = (TextView) findViewById(R.id.get_year_trans);
         yearTextView.setText(year);
-
     }
 
 
@@ -72,6 +77,28 @@ public class ViewTransactionActivity extends MainActivity {
                 startActivity(intent);
             default:
                 return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v,
+                                    ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.context_menu, menu);
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        switch (item.getItemId())
+        {
+                case R.id.action_delete:
+                String transIdToDelete = TransactionsEndPoint.transactionList.get(info.position).getTransactionId();
+                new TransactionsEndPoint(this,transIdToDelete);
+                return true;
+            default:
+                return super.onContextItemSelected(item);
         }
     }
 }

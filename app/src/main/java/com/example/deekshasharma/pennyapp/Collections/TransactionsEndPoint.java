@@ -6,10 +6,12 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.deekshasharma.pennyapp.model.TransactionItem;
 
@@ -56,6 +58,13 @@ public class TransactionsEndPoint {
         String url = getUrlFewTrans();
         getTransactionsFromServer(url);
     }
+
+    public TransactionsEndPoint(Context context,String transId)
+    {
+        this.context = context;
+        deleteTransaction(transId);
+    }
+
 
 
     /*
@@ -137,7 +146,9 @@ public class TransactionsEndPoint {
                                 transactionsJsonJSONObject.getString("transactionDate"),
                                 transactionsJsonJSONObject.getString("name"),
                                 transactionsJsonJSONObject.getString("amount"),
-                                transactionsJsonJSONObject.getJSONObject("category").getString("groupName"));
+                                transactionsJsonJSONObject.getJSONObject("category").getString("groupName"),
+                                transactionsJsonJSONObject.getString("id")
+                        );
                 transactionList.add(transactionItem);
             }
 
@@ -147,6 +158,45 @@ public class TransactionsEndPoint {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+
+
+
+
+
+
+    private void deleteTransaction(String transId)
+    {
+        String url = "https://api-pennyapp.rhcloud.com/rest/transactions/d8922b44-75af-4810-a87e-77adcf433cfd/"+transId+"/delete";
+        Log.d("URL IS: ",url);
+        RequestQueue queue = Volley.newRequestQueue(context);
+        StringRequest mStringRequest = new StringRequest(Request.Method.DELETE, url,
+                new Response.Listener<String>()
+                {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.d("Response", response);
+                    }
+
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.d("Error.Response", error.toString());
+                    }
+                })
+
+        {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<>();
+                headers.put("BEARER", "55b885274e7912280095ef80ac1cb937:d8922b44-75af-4810-a87e-77adcf433cfd:760000000");
+                return headers;
+            }
+        };
+        queue.add(mStringRequest);
     }
 
 }
