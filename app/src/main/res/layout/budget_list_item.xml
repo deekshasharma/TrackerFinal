@@ -23,12 +23,12 @@
         android:gravity="center_vertical"
         android:paddingRight="40dp"
         android:text="Food &amp; Drink"
-        android:layout_marginLeft="100dp"
+        android:layout_marginLeft="70dip"
         android:textStyle="italic" />
 
     <TextView
         android:id="@+id/budget_percent_spent"
-        android:layout_width="wrap_content"
+        android:layout_width="150dip"
         android:layout_height="match_parent"
         android:layout_toRightOf="@id/budget_group_name"
         android:minHeight="?android:attr/listPreferredItemHeightSmall"
@@ -36,13 +36,13 @@
         android:gravity="center_vertical"
         android:paddingRight="40dp"
         android:text="40%"
-        android:layout_marginLeft="100dip"
-        android:textStyle="bold|italic" />
+        android:textStyle="bold|italic"
+        android:layout_marginLeft="180dip" />
 
 
     <TextView
         android:id="@+id/total_budget"
-        android:layout_width="wrap_content"
+        android:layout_width="150dip"
         android:layout_height="match_parent"
         android:layout_toRightOf="@id/budget_percent_spent"
         android:minHeight="?android:attr/listPreferredItemHeightSmall"
@@ -50,8 +50,8 @@
         android:gravity="center_vertical"
         android:paddingRight="40dp"
         android:text="$360"
-        android:layout_marginLeft="100dp"
-        android:textStyle="bold|italic" />
+        android:textStyle="bold|italic"
+        android:layout_marginRight="30dip" />
 
 
 </RelativeLayout>

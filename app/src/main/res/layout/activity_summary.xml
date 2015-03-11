@@ -107,7 +107,7 @@
         android:layout_below="@+id/summary_header"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:background="@color/background_material_dark"
+        android:background="@color/material_blue_grey_800"
         android:id="@+id/tableRow">
 
         <TextView

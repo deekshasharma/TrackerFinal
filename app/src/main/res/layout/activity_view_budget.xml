@@ -98,7 +98,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/budget_list_view"
-        android:layout_marginTop="190dp" />
+        android:layout_marginTop="220dip" />
 
 
     <TableRow
@@ -108,8 +108,9 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:paddingTop="10dip"
-        android:background="@color/background_material_dark"
-        android:layout_marginTop="120dp">
+        android:background="@color/material_blue_grey_800"
+        android:layout_marginTop="120dp"
+        android:id="@+id/tableRow2">
 
         <TextView
             android:layout_width="wrap_content"
@@ -125,6 +126,32 @@
             android:clickable="true" />
 
     </TableRow>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="SPENT"
+        android:id="@+id/spent"
+        android:layout_marginRight="248dp"
+        android:layout_marginEnd="248dp"
+        android:layout_below="@+id/tableRow2"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:textSize="20dip" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="BUDGET"
+        android:id="@+id/textView4"
+        android:layout_below="@+id/tableRow2"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="78dp"
+        android:layout_marginEnd="78dp"
+        android:textSize="20dip" />
 
 
 </RelativeLayout>

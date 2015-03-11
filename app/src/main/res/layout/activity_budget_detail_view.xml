@@ -81,11 +81,11 @@
 
     <ImageView
         android:layout_width="120dip"
-        android:layout_height="wrap_content"
+        android:layout_height="120dip"
         android:id="@+id/detailBudget_getGrpIcon"
-        android:layout_alignBottom="@+id/detailBudget_getGrpName"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_alignBottom="@+id/linearLayout" />
 
     <TextView
         android:layout_width="wrap_content"
