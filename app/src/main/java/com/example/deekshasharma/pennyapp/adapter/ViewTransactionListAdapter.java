@@ -47,7 +47,7 @@ public class ViewTransactionListAdapter extends ArrayAdapter {
             String formattedDate = fromUTCToString(transactionItemList.get(position).getTransactionDate());
             date.setText(formattedDate);
 
-//
+
             ImageView groupIcon = (ImageView)convertView.findViewById(R.id.get_group_icon);
             int imageId = GroupToImage.getImage(transactionItemList.get(position).getGroupName());
             groupIcon.setImageResource(imageId);

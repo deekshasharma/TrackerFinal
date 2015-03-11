@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.deekshasharma.pennyapp.Collections.TransactionsEndPoint;
 import com.example.deekshasharma.pennyapp.adapter.ViewTransactionListAdapter;
@@ -20,6 +21,8 @@ import java.util.Date;
 
 
 public class ViewTransactionActivity extends MainActivity {
+
+    private ArrayAdapter transListAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,11 +34,11 @@ public class ViewTransactionActivity extends MainActivity {
 
         ListView transListView = (ListView) findViewById(R.id.trans_list_view);
         TextView numOfTrans = (TextView) findViewById(R.id.get_num_trans);
-        ArrayAdapter transListAdapter = new ViewTransactionListAdapter(this,
+         transListAdapter = new ViewTransactionListAdapter(this,
                                         R.layout.transaction_list_item,
                                         TransactionsEndPoint.transactionList);
         transListView.setAdapter(transListAdapter);
-        TransactionsEndPoint endPoint = new TransactionsEndPoint(this,transListAdapter,numOfTrans);
+        new TransactionsEndPoint(this,transListAdapter,numOfTrans);
 
         setHeader();
 
@@ -96,7 +99,8 @@ public class ViewTransactionActivity extends MainActivity {
                 case R.id.action_delete:
                 String transIdToDelete = TransactionsEndPoint.transactionList.get(info.position).getTransactionId();
                 new TransactionsEndPoint(this,transIdToDelete);
-                return true;
+                    Toast.makeText(this,"Transaction deleted, please refresh",Toast.LENGTH_SHORT).show();
+                    return true;
             default:
                 return super.onContextItemSelected(item);
         }
