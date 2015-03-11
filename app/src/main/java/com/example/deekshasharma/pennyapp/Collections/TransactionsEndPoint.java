@@ -32,6 +32,7 @@ public class TransactionsEndPoint {
     public static List<TransactionItem> transactionList = new ArrayList<>();
     private Context context;
     private String groupName;
+    private String categoryId;
     private TextView numOfTrans;
 
     /*
@@ -55,7 +56,7 @@ public class TransactionsEndPoint {
         this.viewTransactionListAdapter = viewTransactionListAdapter;
         this.groupName = groupName;
         this.numOfTrans = numOfTrans;
-        String url = getUrlFewTrans();
+        String url = getUrlFewTrans(true);
         getTransactionsFromServer(url);
     }
 
@@ -72,13 +73,22 @@ public class TransactionsEndPoint {
     /*
     Constructor called by BudgetDetail Activity
      */
-    public TransactionsEndPoint(Context context,ArrayAdapter viewTransactionListAdapter,String groupName)
+    public TransactionsEndPoint(Context context,ArrayAdapter viewTransactionListAdapter,String groupOrCategoryId,Boolean isGroupOnly)
     {
         this.context=context;
         this.viewTransactionListAdapter= viewTransactionListAdapter;
-        this.groupName = groupName;
-        String url = getUrlFewTrans();
-        getTransactionsFromServer(url);
+        if(isGroupOnly)
+        {
+            this.groupName = groupOrCategoryId;
+            String url = getUrlFewTrans(isGroupOnly);
+            getTransactionsFromServer(url);
+        }
+        else
+        {
+            this.categoryId = groupOrCategoryId;
+            String url = getUrlFewTrans(isGroupOnly);
+            getTransactionsFromServer(url);
+        }
     }
 
 
@@ -96,16 +106,23 @@ public class TransactionsEndPoint {
     }
 
     /*
-     Constructs the URL for a specific group
+     Constructs the URL for a specific group/category
      */
-    private String getUrlFewTrans()
+    private String getUrlFewTrans(Boolean isGroupOnly)
     {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(new Date());
         String month = Integer.toString(calendar.get(Calendar.MONTH) + 1);
         String year = Integer.toString(calendar.get(Calendar.YEAR));
-        final String encodedGroupName = groupName.replace(" ", "%20").replace("&", "%26");
-        return "https://api-pennyapp.rhcloud.com/rest/transactions/d8922b44-75af-4810-a87e-77adcf433cfd/"+year+"/"+month+"?categoryGroup="+encodedGroupName;
+        if(isGroupOnly)
+        {
+            final String encodedGroupName = groupName.replace(" ", "%20").replace("&", "%26");
+            return "https://api-pennyapp.rhcloud.com/rest/transactions/d8922b44-75af-4810-a87e-77adcf433cfd/"+year+"/"+month+"?categoryGroup="+encodedGroupName;
+        }
+        else
+        {
+            return "https://api-pennyapp.rhcloud.com/rest/transactions/d8922b44-75af-4810-a87e-77adcf433cfd/"+year+"/"+month+"/categories/"+categoryId;
+        }
     }
 
 
@@ -149,7 +166,7 @@ public class TransactionsEndPoint {
     Add all transaction items to transaction list.
      */
     private void generateTransactionCollectionFromResponse(JSONObject response) {
-        transactionList.clear();
+//        transactionList.clear();
         JSONArray transactionsJson = null;
         try {
             transactionsJson = response.getJSONArray("transactions");

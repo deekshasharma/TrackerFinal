@@ -10,10 +10,11 @@ public class BudgetItem {
 
     private String categoryName;
     private String groupName;
-    private boolean groupOnly;
+    private String groupOnly;
     private String percentSpent;
     private String budgeted;
     private String available;
+    private String categoryId;
 
 
     public BudgetItem(JSONObject jsonObject) {
@@ -21,9 +22,10 @@ public class BudgetItem {
         {
             this.categoryName = jsonObject.getJSONObject("category").getString("name");
             this.groupName = jsonObject.getJSONObject("category").getString("groupName");
-            this.groupOnly = jsonObject.getBoolean("groupOnly");
+            this.groupOnly = jsonObject.getString("groupOnly");
             this.budgeted = jsonObject.getString("budgeted");
             this.available = jsonObject.getString("available");
+            this.categoryId = jsonObject.getJSONObject("category").getString("id");
 
             double budgeted = Double.parseDouble(jsonObject.getString("budgeted"));
             double available = Double.parseDouble(jsonObject.getString("available"));
@@ -49,6 +51,10 @@ public class BudgetItem {
         return available;
     }
 
+    public String getCategoryId() {
+        return categoryId;
+    }
+
     public String getCategoryName() {
         return this.categoryName;
     }
@@ -65,7 +71,7 @@ public class BudgetItem {
         return this.groupName;
     }
 
-    public boolean isGroupOnly() {
+    public String isGroupOnly() {
         return this.groupOnly;
     }
 }

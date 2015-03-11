@@ -94,6 +94,8 @@ public class BudgetActivity extends MainActivity {
                 intent.putExtra("percentSpent",budgets.get(position).getPercentSpent());
                 intent.putExtra("budgeted",budgets.get(position).getBudgeted());
                 intent.putExtra("available",budgets.get(position).getAvailable());
+                intent.putExtra("categoryId",budgets.get(position).getCategoryId());
+                intent.putExtra("isGroupOnly",budgets.get(position).isGroupOnly());
                 startActivity(intent);
             }
         });

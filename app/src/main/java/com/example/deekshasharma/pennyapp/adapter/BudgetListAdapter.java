@@ -36,7 +36,7 @@ public class BudgetListAdapter extends ArrayAdapter<BudgetItem>{
 
 
         TextView categoryName = (TextView) convertView.findViewById(R.id.budget_group_name);
-        if(budgetItemList.get(position).isGroupOnly())
+        if(budgetItemList.get(position).isGroupOnly().equalsIgnoreCase("true"))
         {
             categoryName.setText(budgetItemList.get(position).getGroupName());
         }

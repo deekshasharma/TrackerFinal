@@ -27,6 +27,8 @@ public class BudgetDetailViewActivity extends ActionBarActivity {
         String percentSpent = intent.getStringExtra("percentSpent");
         String budgeted = intent.getStringExtra("budgeted");
         String avail = intent.getStringExtra("available");
+        String categoryId = intent.getStringExtra("categoryId");
+        String groupOnly = intent.getStringExtra("isGroupOnly");
 
         setUpHeader(groupName,percentSpent,budgeted,avail);
 
@@ -35,7 +37,15 @@ public class BudgetDetailViewActivity extends ActionBarActivity {
                                                     R.layout.transaction_list_item,
                                                 TransactionsEndPoint.transactionList);
         budgetListView.setAdapter(transactionListAdapter);
-        new TransactionsEndPoint(this,transactionListAdapter,groupName);
+
+        if(groupOnly.equalsIgnoreCase("true"))
+        {
+            new TransactionsEndPoint(this,transactionListAdapter,groupName,true);
+        }
+        else
+        {
+            new TransactionsEndPoint(this,transactionListAdapter,categoryId,false);
+        }
 
 
     }

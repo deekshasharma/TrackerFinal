@@ -24,7 +24,7 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="BUDGETED"
             android:id="@+id/budgeted_text"
-            android:textSize="30dip"
+            android:textSize="20dip"
             android:textColor="#fff8ffd3"
             android:paddingTop="20dp"
             android:layout_marginLeft="20dip" />
@@ -41,7 +41,7 @@
             android:layout_weight="0.14"
             android:textColor="#fff8ffd3"
             android:layout_marginLeft="30dip"
-            android:textSize="30dip" />
+            android:textSize="20dip" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -49,7 +49,7 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:id="@+id/avail_text"
             android:textColor="#fff8ffd3"
-            android:textSize="30dip"
+            android:textSize="20dip"
             android:layout_marginLeft="200dip"
             android:text="AVAILABLE" />
 
@@ -60,7 +60,8 @@
             android:id="@+id/detailBudget_getAvailable"
             android:textColor="#fff8ffd3"
             android:layout_marginLeft="30dip"
-            android:textSize="30dip" />
+            android:textSize="20dip"
+            android:textIsSelectable="false" />
     </TableRow>
 
 
