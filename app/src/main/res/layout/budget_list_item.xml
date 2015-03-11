@@ -23,7 +23,8 @@
         android:gravity="center_vertical"
         android:paddingRight="40dp"
         android:text="Food &amp; Drink"
-        android:layout_marginLeft="100dp" />
+        android:layout_marginLeft="100dp"
+        android:textStyle="italic" />
 
     <TextView
         android:id="@+id/budget_percent_spent"
@@ -35,7 +36,8 @@
         android:gravity="center_vertical"
         android:paddingRight="40dp"
         android:text="40%"
-        android:layout_marginLeft="150dp" />
+        android:layout_marginLeft="100dip"
+        android:textStyle="bold|italic" />
 
 
     <TextView
@@ -48,7 +50,8 @@
         android:gravity="center_vertical"
         android:paddingRight="40dp"
         android:text="$360"
-        android:layout_marginLeft="100dp" />
+        android:layout_marginLeft="100dp"
+        android:textStyle="bold|italic" />
 
 
 </RelativeLayout>
