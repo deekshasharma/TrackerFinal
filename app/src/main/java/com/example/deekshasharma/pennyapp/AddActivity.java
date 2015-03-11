@@ -42,7 +42,6 @@ public class AddActivity extends ActionBarActivity {
     private TextView date;
     private Calendar myCalender;
     private DatePickerDialog datePickerDialog;
-    private String[] allMonths = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
     private TextView categoryName;
     private Button addTransactionButton;
     private EditText amount;
@@ -90,6 +89,7 @@ public class AddActivity extends ActionBarActivity {
                 new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                        String[] allMonths = getResources().getStringArray(R.array.months);
                         Calendar selectedDate = Calendar.getInstance();
                         selectedDate.set(year, monthOfYear, dayOfMonth);
                         String month = allMonths[selectedDate.get(Calendar.MONTH)];
